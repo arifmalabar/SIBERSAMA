@@ -15,11 +15,12 @@ class Guru extends Migration
     {
         Schema::create('tb_guru', function (Blueprint $table) {
             $table->char('NIP', 50)->primary();
+            $table->char('kode_pangkat', 15);
+            $table->foreign('kode_pangkat')->references('kode_pangkat')->on('tb_kepangkatan')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nama');
             $table->string('username')->unique();
             $table->string('password', 255);
-            $table->string('pangkat');
-            $table->string('role');
+            $table->integer('role', 15);
             $table->timestamp('last_access');
         });
     }
