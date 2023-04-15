@@ -14,7 +14,9 @@ penjumalahan terbobot sesuai dengan kriteria pembobotan poin, project menggunaka
 scripting UI 
 
 Nama : Ridho Arif Wicaksono
+
 NIm : 2118055
+
 MK : SI
 
 ## Regards
