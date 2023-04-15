@@ -18,4 +18,7 @@ use App\Http\Controllers\admin\Tes;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/tes', function(){
+    return view('template/main', ['nama_file_view' => 'admin/main']);
+});
 Route::get('/admin', [Tes::class, 'main']);
