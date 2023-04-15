@@ -8,6 +8,7 @@
 </p>
 
 ##Tentang Project SI Bermasalah
+<br>
 Project SI yang saya kerjakan adalah project mentukan siswa bermasalah dengan metode SAW(Simple Adictive Weight) yang mana metode ini menggunakan sistem 
 penjumalahan terbobot sesuai dengan kriteria pembobotan poin, project menggunakan framework laravel V8 dan menggunakan Template admin LTE untuk mempermudah 
 scripting UI 
@@ -17,7 +18,7 @@ NIm : 2118055
 MK : SI
 
 ## Regards
-
+<br>
 Pihak yang membantu
 - Ibu Karina Auliasari S.T., M.Eng.,
 - Teman teman kuliah 
