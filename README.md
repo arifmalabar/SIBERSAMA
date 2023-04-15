@@ -1,4 +1,5 @@
-<img src="https://drive.google.com/file/d/1VKkoacJ6A0JU_y4JQyYtPV7V1LpzEv_W/view?usp=share_link">
+
+![Screenshot (8)](https://user-images.githubusercontent.com/56249846/232234637-44a24425-7e3b-4982-83ac-3c7f1a81aa85.png)
 
 ## Tentang Project SI Bermasalah
 
