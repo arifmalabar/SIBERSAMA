@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Dashboard;
+use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\admin\Tes;
 
 /*
@@ -18,7 +19,9 @@ use App\Http\Controllers\admin\Tes;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/tes', function(){
-    return view('template/main', ['nama_file_view' => 'admin/main']);
+Route::group(['middleware' => ['is_operator']], function () {
+    Route::get('/admin', [Dashboard::class, 'main']);
 });
-Route::get('/admin', [Tes::class, 'main']);
+Route::get('/login', [AuthController::class, 'index']);
+Route::post('/do_login', [AuthController::class,'on_login']);
+Route::post('/do_logout', [AuthController::class,'on_logout']);

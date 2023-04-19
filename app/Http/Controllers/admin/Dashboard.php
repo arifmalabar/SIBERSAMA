@@ -9,6 +9,9 @@ class Dashboard extends Controller
 {
     public function main()
     {
-        return "oke";
+        $data = array(
+            'nama_file_view' => 'admin/main'
+        );
+        return view('template/main', $data);
     }
 }

@@ -49,7 +49,10 @@
         <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" onclick="confirmDlg('Apakah YAkin Logout', 'Logout', 'warning', 'Logout')" class="nav-link">Logout</a>
+        <form action="/do_logout" class="form-logout" method="post">
+          @csrf
+          <a href="#" type="submit" onclick="confirmDlg('Apakah YAkin Logout', 'Logout', 'warning', 'Logout')" class="nav-link" id="btn-logout">Logout</a>
+        </form>
       </li>
     </ul>
 
@@ -78,7 +81,7 @@
         <div class="info">
           <div class="row">
             <div class="col-md-12">
-              <a href="#" class="d-block">Ridho Arif Wicaksono</a>
+              <a href="#" class="d-block">{{ session()->get('nama'); }}</a>
             </div>
             <div class="col-md-12">
               <span class="right badge badge-danger">Admin</span>
