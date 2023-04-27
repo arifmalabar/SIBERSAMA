@@ -8,6 +8,7 @@ function pesanBerhasil(pesan, header, ikon)
         confirmButtonText: 'Oke'
     });
 }
+
 btnlog.addEventListener('click', function (e) {
   e.preventDefault();
   var link = document.querySelector('.form-logout').getAttribute('action');

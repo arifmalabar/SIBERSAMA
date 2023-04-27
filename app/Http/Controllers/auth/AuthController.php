@@ -28,6 +28,7 @@ class AuthController extends Controller
                 return redirect('/admin');
                 break;
             default:
+                $request->session()->flash('pesan', 'gagal login password username anda salah');
                 return redirect('/login');
                 break;
         }

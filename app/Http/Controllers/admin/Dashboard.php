@@ -10,8 +10,8 @@ class Dashboard extends Controller
     public function main()
     {
         $data = array(
-            'nama_file_view' => 'admin/main'
+            'nama_file_view' => 'admin/main',
         );
-        return view('template/main', $data);
+        return view('admin/main', $data);
     }
 }

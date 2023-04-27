@@ -27,6 +27,9 @@
   <link rel="stylesheet" href="{{ asset('template/plugins/summernote/summernote-bs4.min.css')}}">
   <!-- Sweetalert -->
   <link rel="stylesheet" href="{{ asset('sweetalert2/dist/sweetalert2.min.css')}}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="shortcut icon" href="{{asset('foto/k8.png')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -99,25 +102,25 @@
                with font-awesome or any other icon font library -->
           <li class="nav-header">Utama</li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link active">
+            <a href="/admin" class="nav-link {{ $nama_file_view == "admin/main" ? 'active' : '' }}">
               <i class="nav-icon fas fa-home"></i>
               <p>Home</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="/jurusan" class="nav-link {{ $nama_file_view == "admin/jurusan" ? 'active' : '' }}">
               <i class="nav-icon fas fa-school"></i>
               <p>Jurusan</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="/kelas" class="nav-link {{ $nama_file_view == "admin/kelas" ? 'active' : '' }}">
               <i class="nav-icon fas fa-store"></i>
               <p>Kelas</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="pages/widgets.html" class="nav-link {{ $nama_file_view == "admin/siswa" ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>Siswa</p>
             </a>
@@ -153,7 +156,7 @@
           </li>-->
           <li class="nav-header">Guru dan GTK</li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="guru" class="nav-link {{ $nama_file_view == "admin/guru" ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p>Guru</p>
             </a>
@@ -165,13 +168,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="/kepangkatan" class="nav-link {{ $nama_file_view == "admin/pangkat" ? 'active' : '' }}">
               <i class="nav-icon fas fa-star"></i>
               <p>Kepangkatan</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="/jabatan" class="nav-link {{ $nama_file_view == "admin/jabatan" ? 'active' : '' }}">
               <i class="nav-icon fas fa-bookmark"></i>
               <p>Jabatan</p>
             </a>
@@ -198,7 +201,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    {{ view($nama_file_view) }}
+    @yield('content')
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -253,7 +256,45 @@
 <script src="{{ asset('template/dist/js/pages/dashboard.js')}}"></script>
 <!-- jQuery -->
 <script src="{{asset('sweetalert2/dist/sweetalert2.min.js')}}"></script>
-<!-- jQuery -->
+<!-- Message -->
 <script src="{{asset('script/message.js')}}"></script>
+<!-- DataTables -->
+<script src="{{ asset('template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    $("#example3").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    });
+  });
+</script>
 </body>
 </html>

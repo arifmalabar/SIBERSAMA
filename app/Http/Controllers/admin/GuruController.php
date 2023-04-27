@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\admin\Guru;
 use App\Http\Requests\StoreGuruRequest;
 use App\Http\Requests\UpdateGuruRequest;
+use App\Http\Controllers\Controller;
 
 class GuruController extends Controller
 {
@@ -15,7 +16,10 @@ class GuruController extends Controller
      */
     public function index()
     {
-        //
+        $data = array(
+            'nama_file_view' => 'admin/guru',
+        );
+        return view('template/main', $data);
     }
 
     /**

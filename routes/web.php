@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Dashboard;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\admin\Tes;
+use App\Http\Controllers\admin\GuruController;
+use App\Http\Controllers\admin\KepangkatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +18,11 @@ use App\Http\Controllers\admin\Tes;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, 'index']);
 Route::group(['middleware' => ['is_operator']], function () {
     Route::get('/admin', [Dashboard::class, 'main']);
+    Route::get('/guru', [GuruController::class, 'index']);
+    Route::get('/kepangkatan', [KepangkatanController::class, 'index']);
 });
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/do_login', [AuthController::class,'on_login']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\admin\Kepangkatan;
 use App\Http\Requests\StoreKepangkatanRequest;
 use App\Http\Requests\UpdateKepangkatanRequest;
+use App\Http\Controllers\Controller;
 
 class KepangkatanController extends Controller
 {
@@ -15,7 +16,12 @@ class KepangkatanController extends Controller
      */
     public function index()
     {
-        //
+        $data = array(
+            'nama_file_view' => 'admin/pangkat',
+            'data_pangkat' => Kepangkatan::all(),
+            'no' => 1
+        );
+        return view('admin/pangkat', $data);
     }
 
     /**

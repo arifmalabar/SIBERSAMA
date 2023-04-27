@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Sweetalert -->
+  <link rel="stylesheet" href="{{ asset('sweetalert2/dist/sweetalert2.min.css')}}">
   <link rel="shortcut icon" href="{{asset('foto/k8.png')}}">
   <style type="text/css">
     .bglogin {
@@ -64,7 +66,7 @@
       <!-- /.card-header -->
       <div class="card-body login-card-body">
         <p class="login-box-msg">Masukan <b>Username & password</b> untuk memulai sesi anda</p>
-        <div class="flash-data" data-flashdata=""></div>
+        <div class="flash-data" data-flashdata="{{ session()->get('pesan') }}"></div>
         <form action="/do_login" onSubmit="validasi()" method="post">
           <div class="input-group mb-3">
             @csrf
@@ -134,8 +136,9 @@
 <script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
-
-<script src="{{ asset('template/plugins/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{asset('sweetalert2/dist/sweetalert2.min.js')}}"></script>
+<!-- Message -->
+<script src="{{asset('script/message.js')}}"></script>
 <script>
   var username = document.getElementById("username");
   var password = document.getElementById("password");
@@ -164,15 +167,9 @@
   
   //
   const flashdata = $('.flash-data').data('flashdata');
-  
-  if (flashdata){
-    swal({
-        title: "Login gagal",
-        text: flashdata,
-        icon: "error",
-        button: "Ok Lanjutkan",
-      });
-  } 
+  if(flashdata){
+    pesanBerhasil(flashdata, "Gagal", "error");
+  }
   $(document).ready(function(){
     $(".preloader").fadeOut();
   });
