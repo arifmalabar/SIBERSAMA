@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Models\admin\Jabatan;
 use App\Http\Requests\StoreJabatanRequest;
 use App\Http\Requests\UpdateJabatanRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\IdBuilder;
+use Illuminate\Support\Str;
 
 class JabatanController extends Controller
 {
@@ -13,74 +16,50 @@ class JabatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    private $data = array();
+    function __construct()
     {
-        //
+        $data = array(
+            'data_pangkat' => getPangkat(),
+            'no' => 1
+        );
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function jabatanTable()
     {
-        //
+        
+        return view('admin/table/table_jabatan', $data);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreJabatanRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    public static function getJabatan()
+    {
+        return Jabatan::all();
+    }
     public function store(StoreJabatanRequest $request)
     {
-        //
+        $request->validate([
+            'nama_jabatan' => 'required'
+        ]);
+        Jabatan::create([
+            "kode_jabatan" => IdBuilder::getId(Kepangkatan::class, "kd_jabatan","PK"),
+            "nama_jabatan" => $request->nama_jabatan
+        ]);
+        return view('admin/table/table_jabatan', $data);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\admin\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Jabatan $jabatan)
+    public function update(UpdateJabatanRequest $request, $id)
     {
-        //
+        $request->validate([
+            'nama_jabatan' => 'required'
+        ]);
+        $jabatan = Jabatan::find($id);
+        $pegawai->nama_jabatan = $request->nama_jabatan;
+        $jabatan->save();
+        return view('admin/table/table_jabatan', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\admin\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Jabatan $jabatan)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateJabatanRequest  $request
-     * @param  \App\Models\admin\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateJabatanRequest $request, Jabatan $jabatan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\admin\Jabatan  $jabatan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Jabatan $jabatan)
-    {
-        //
+        $pegawai = Pegawai::find($id);
+        $pegawai->delete();
+        return view('admin/table/table_jabatan', $data);
     }
 }

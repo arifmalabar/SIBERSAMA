@@ -167,18 +167,6 @@
               <p>Kepala Sekolah</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="/kepangkatan" class="nav-link {{ $nama_file_view == "admin/pangkat" ? 'active' : '' }}">
-              <i class="nav-icon fas fa-star"></i>
-              <p>Kepangkatan</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/jabatan" class="nav-link {{ $nama_file_view == "admin/jabatan" ? 'active' : '' }}">
-              <i class="nav-icon fas fa-bookmark"></i>
-              <p>Jabatan</p>
-            </a>
-          </li>
           <li class="nav-header">Laporan</li>
           <li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">

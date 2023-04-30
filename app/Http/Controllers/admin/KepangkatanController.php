@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\admin\Kepangkatan;
 use App\Http\Requests\StoreKepangkatanRequest;
 use App\Http\Requests\UpdateKepangkatanRequest;
+use App\Http\Controllers\IdBuilder;
 use App\Http\Controllers\Controller;
 
 class KepangkatanController extends Controller
@@ -14,79 +15,50 @@ class KepangkatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    private $data = array();
+    function __construct()
     {
         $data = array(
-            'nama_file_view' => 'admin/pangkat',
-            'data_pangkat' => Kepangkatan::all(),
+            'data_pangkat' => getPangkat(),
             'no' => 1
         );
-        return view('admin/pangkat', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function tableData()
     {
-        //
+        return view('admin/table/table_pangkat', $data);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreKepangkatanRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    public static function getPangkat() 
+    {
+        return Kepangkatan::all();
+    }
+    
     public function store(StoreKepangkatanRequest $request)
     {
-        //
+        $request->validate([
+            "nama_pangkat" => "required"
+        ]);
+        Kepangkatan::create([
+            "kode_pangkat" => IdBuilder::getId(Kepangkatan::class, "kode_pangkat","PK"),
+            "pangkat" => $request->nama_pangkat
+        ]);
+        return view('admin/table/table_pangkat', $data);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\admin\Kepangkatan  $kepangkatan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Kepangkatan $kepangkatan)
+    public function update(UpdateKepangkatanRequest $request, $id)
     {
-        //
+        $request->validate([
+            "nama_pangkat" => "required"
+        ]);
+        $kepangkatan = Kepangkatan::find($id);
+        $kepangkatan->pangkat = $request->nama_pangkat;
+        $kepangkatan->save();
+        return view('admin/table/table_pangkat', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\admin\Kepangkatan  $kepangkatan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Kepangkatan $kepangkatan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateKepangkatanRequest  $request
-     * @param  \App\Models\admin\Kepangkatan  $kepangkatan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateKepangkatanRequest $request, Kepangkatan $kepangkatan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\admin\Kepangkatan  $kepangkatan
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Kepangkatan $kepangkatan)
     {
-        //
+        $kepangkatan = Kepangkatan::find($id);
+        $kepangkatan->delete();
+        return view('admin/table/table_pangkat', $data);
     }
 }

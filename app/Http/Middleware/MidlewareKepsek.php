@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class OperatorMidleware
+class MidlewareKepsek
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class OperatorMidleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->session()->get('level') != "operator")
+        if($request->session()->get('level') != "kepsek")
         {
             return redirect('/login');
         }

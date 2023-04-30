@@ -15,11 +15,7 @@ class Kelas extends Migration
     {
         Schema::create('tb_kelas', function (Blueprint $table) {
             $table->bigIncrements('kode_kelas');
-            $table->unsignedBigInteger('kode_jurusan');
-            $table->char('NIP', 50);
-            $table->foreign('kode_jurusan')->references('kode_jurusan')->on('tb_jurusan');
-            $table->foreign('NIP')->references('NIP')->on('tb_guru');
-            $table->string('nama_jurusan');
+            $table->string('nama_kelas');
         });
     }
 

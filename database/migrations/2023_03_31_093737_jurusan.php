@@ -15,8 +15,6 @@ class Jurusan extends Migration
     {
         Schema::create('tb_jurusan', function (Blueprint $table) {
             $table->bigIncrements('kode_jurusan');
-            $table->char('NIP', 50);
-            $table->foreign('NIP')->references('NIP')->on('tb_guru');
             $table->string('nama_jurusan');
         });
     }
