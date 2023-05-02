@@ -31,6 +31,8 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('template/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="shortcut icon" href="{{asset('foto/k8.png')}}">
     </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -53,7 +55,10 @@
         <a href="index3.html" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Logout</a>
+        <form action="/do_logout" class="form-logout" method="post">
+          @csrf
+          <a href="#" type="submit" onclick="confirmDlg('Apakah YAkin Logout', 'Logout', 'warning', 'Logout')" class="nav-link" id="btn-logout">Logout</a>
+        </form>
       </li>
     </ul>
 
@@ -77,7 +82,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="{{asset('foto/profile/1.png')}}" class="img-circle elevation-2" style="margin-top: 10px" height="100" width="100" alt="User Image">
+            <img src="{{asset('foto/profile/3.png')}}" class="img-circle elevation-2" style="margin-top: 10px" height="100" width="100" alt="User Image">
         </div>
         <div class="info">
             <div class="row">
@@ -191,8 +196,6 @@
 <script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{ asset('template/plugins/chart.js/Chart.min.js')}}"></script>
-<!-- Sparkline -->
-<script src="{{ asset('template/plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
 <script src="{{ asset('template/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
 <script src="{{ asset('template/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
@@ -211,8 +214,6 @@
 <script src="{{ asset('template/dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('template/dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('template/dist/js/pages/dashboard.js')}}"></script>
 <!-- jQuery -->
 <script src="{{asset('sweetalert2/dist/sweetalert2.min.js')}}"></script>
 <!-- Message -->
@@ -222,6 +223,7 @@
 <script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('template/plugins/select2/js/select2.full.min.js')}}"></script>
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -247,12 +249,71 @@
       "responsive": true,
     });
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').select2();
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     });
+    var areaChartData = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+      datasets: [
+        {
+          label               : 'Kerapian',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [28, 48, 40, 19, 86, 27, 90]
+        },
+        {
+          label               : 'Kedisiplinan',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [65, 59, 80, 81, 56, 55, 40]
+        },
+        {
+          label               : 'Kelakuan',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [65, 59, 80, 81, 56, 55, 40]
+        },
+      ]
+    }
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#presentase').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
   });
 </script>
 </body>

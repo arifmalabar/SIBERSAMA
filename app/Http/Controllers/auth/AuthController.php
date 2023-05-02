@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\auth\AdminAuth;
 use Illuminate\Http\Request;
 use App\Models\auth\GuruAuth;
-use App\Models\Auth\SiswaAuth;
+use App\Models\admin\Siswa;
 
 class AuthController extends Controller
 {
@@ -22,7 +22,7 @@ class AuthController extends Controller
         ]);
         $data = AdminAuth::all()->where('username', $request->email)->where('password', md5($request->password));
         $data_guru = GuruAuth::all()->where('username', $request->email)->where('password', md5($request->password));
-        $data_siswa = SiswaAuth::all()->where('username', $request->email)->where('password', md5($request->password));
+        $data_siswa = Siswa::all()->where('username', $request->email)->where('password', md5($request->password));
         if($data->count())
         {
             foreach ($data as $key) {
@@ -47,11 +47,14 @@ class AuthController extends Controller
             foreach ($data_siswa as $key) {
                 $request->session()->put('nama', $key->nama_siswa);
                 $request->session()->put('NIP', $key->NISN);
+                $request->session()->put('nama_kelas', $key->kelas->nama_kelas);
+                $request->session()->put('nama_jurusan', $key->kelas->jurusan->nama_jurusan);
                 $request->session()->put('status', 1);
             }
             $request->session()->put('level', 'siswa');
             return redirect('/siswa');
         } else{
+            $request->session()->flash('pesan', 'Username dan password yang anda masukan salah harap masukan kembali');
             return redirect('/login');
         }
     }

@@ -31,7 +31,7 @@ btnlog.addEventListener('click', function (e) {
                 'Berhasil',
                 'Anda Berhasil logout',
                 'danger'
-              )
+              );
             }
           });
         } else {

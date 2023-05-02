@@ -20,7 +20,7 @@
             <div style="margin-bottom: 10px" class="col-lg-12">
               <img src="{{asset('foto/profile/2.png')}}" style="border-radius: 50%" width="50px" height="50px" alt="">
               <a href="">(+62)319296212</a>&nbsp;
-              <i>Ari Rahadian PUSTIK</i>
+              <i>Ari Rahadian Kesiswaan</i>
             </div>
             <div style="margin-bottom: 10px" class="col-lg-12">
               <img src="{{asset('foto/profile/4.png')}}" style="border-radius: 50%" width="50px" height="50px" alt="">
