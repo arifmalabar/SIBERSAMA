@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MidlewareSiswa
 {
@@ -16,7 +17,7 @@ class MidlewareSiswa
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->session()->get('level') != "siswa")
+        if(auth()->guard('siswa')->check() == null)
         {
             return redirect('/login');
         }

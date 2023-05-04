@@ -1,11 +1,13 @@
-
+@php
+ $auth = auth()->guard('siswa')->user();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard Siswa</title>
-    
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -64,7 +66,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -87,7 +89,7 @@
         <div class="info">
             <div class="row">
               <div class="col-md-12">
-                <a href="#" class="d-block">{{ session()->get('nama'); }}</a>
+                <a href="#" class="d-block">{{ $auth->nama_siswa }}</a>
               </div>
               <div class="col-md-3">
                 <span class="right badge badge-danger">Siswa</span>
@@ -99,7 +101,7 @@
         </div>
       </div>
 
-      
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

@@ -61,7 +61,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -84,17 +84,17 @@
         <div class="info">
           <div class="row">
             <div class="col-md-12">
-              <a href="#" class="d-block">{{ session()->get('nama'); }}</a>
+              <a href="#" class="d-block">{{ auth()->guard('operator')->user()->nama }}</a>
             </div>
             <div class="col-md-12">
               <span class="right badge badge-danger">Admin</span>
             </div>
           </div>
-          
+
         </div>
       </div>
 
-      
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

@@ -63,24 +63,30 @@ class AuthController extends Controller
     {
         $data = array(
             "username" => $request->email,
-            "password" => md5($request->password)
+            "password" => $request->password
         );
-        /*if(Auth::guard('operator')->attempt($data)){
-            echo "operator";
-        } elseif(Auth::guard('guru')->atempt($data)){
-            echo "guru";
+        if(Auth::guard('operator')->attempt($data)){
+            $request->session()->regenerate();
+            return redirect()->intended('/admin');
+        } elseif(Auth::guard('guru')->attempt($data)){
+            $request->session()->regenerate();
+            if(Auth::guard('guru')->user()->role == 1){
+                return redirect()->intended('/guru');
+            } elseif(Auth::guard('guru')->user()->role == 0){
+                return redirect()->intended('/kepala_sekolah');
+            }
         } elseif(Auth::guard('siswa')->attempt($data)){
-            echo "siswa";
-        } elseif(Auth::guard('kepsek')->attempt($data)){
-            echo "kepsek";
+            $request->session()->regenerate();
+            return redirect()->intended('/siswa');
         } else{
-            echo "username anda salah";
-        }*/
-        dd(Siswa::all());
+            return redirect('/login')->with('pesan', 'username dan password tidak tepat');
+        }
     }
     public function on_logout(Request $request)
     {
-        $request->session()->flush();
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect("/login");
     }
 }

@@ -16,7 +16,7 @@ class OperatorMidleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->session()->get('level') != "operator")
+        if(auth()->guard('operator')->check() == null)
         {
             return redirect('/login');
         }

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MidlewareKepsek
 {
@@ -16,7 +17,7 @@ class MidlewareKepsek
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->session()->get('level') != "kepsek")
+        if(auth()->guard('guru')->check() == null)
         {
             return redirect('/login');
         }

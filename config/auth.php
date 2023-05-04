@@ -82,15 +82,11 @@ return [
         ],
         'guru' => [
             'driver' => 'eloquent',
-            'model' => App\Models\admin\Guru::class,
+            'model' => App\Models\auth\GuruAuth::class,
         ],
         'siswa' => [
             'driver' => 'eloquent',
-            'model' => App\Models\admin\Siswa::class,
-        ],
-        'kepsek' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\admin\Guru::class,
+            'model' => App\Models\auth\SiswaAuth::class,
         ],
         'operator' => [
             'driver' => 'eloquent',

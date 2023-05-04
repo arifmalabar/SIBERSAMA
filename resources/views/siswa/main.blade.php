@@ -8,7 +8,7 @@
 </div>
 <div class="row">
   @include('siswa/section/akun')
-  @include('siswa/section/informasi', array("data" => "oke"))
+  @include('siswa/section/informasi')
   <div class="col-lg-12">
     <div class="card card-default">
         <div class="card-header bg-success">
