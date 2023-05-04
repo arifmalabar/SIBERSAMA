@@ -40,6 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'guru' => [
+            'driver' => 'session',
+            'provider' => 'guru',
+        ],
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswa',
+        ],
+        'kepsek' => [
+            'driver' => 'session',
+            'provider' => 'kepsek',
+        ],
+        'operator' => [
+            'driver' => 'session',
+            'provider' => 'operator',
+        ],
     ],
 
     /*
@@ -57,12 +73,28 @@ return [
     |
     | Supported: "database", "eloquent"
     |
-    */ 
+    */
 
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'guru' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\admin\Guru::class,
+        ],
+        'siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\admin\Siswa::class,
+        ],
+        'kepsek' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\admin\Guru::class,
+        ],
+        'operator' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\auth\AdminAuth::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

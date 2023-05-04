@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\auth\AdminAuth;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class AuthController extends Controller
     {
         return view("login");
     }
-    public function on_login(Request $request)
+    /*public function on_login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required'],
@@ -57,6 +58,25 @@ class AuthController extends Controller
             $request->session()->flash('pesan', 'Username dan password yang anda masukan salah harap masukan kembali');
             return redirect('/login');
         }
+    }*/
+    public function on_login(AuthRequest $request)
+    {
+        $data = array(
+            "username" => $request->email,
+            "password" => md5($request->password)
+        );
+        /*if(Auth::guard('operator')->attempt($data)){
+            echo "operator";
+        } elseif(Auth::guard('guru')->atempt($data)){
+            echo "guru";
+        } elseif(Auth::guard('siswa')->attempt($data)){
+            echo "siswa";
+        } elseif(Auth::guard('kepsek')->attempt($data)){
+            echo "kepsek";
+        } else{
+            echo "username anda salah";
+        }*/
+        dd(Siswa::all());
     }
     public function on_logout(Request $request)
     {
