@@ -12,6 +12,7 @@ class Dashboard extends Controller
     public function main()
     {
         $data = array(
+            'judul' => 'Dashboard',
             'nama_file_view' => 'admin/main',
             'kepangkatan' => KepangkatanController::getPangkat(),
             'jabatan' => JabatanController::getjabatan()

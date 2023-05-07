@@ -9,6 +9,7 @@ use App\Http\Controllers\guru\DashboardGuru;
 use App\Http\Controllers\siswa\DashboardSiswa;
 use App\Http\Controllers\kepala_sekolah\DashboardKepsek;
 use App\Http\Controllers\Tes;
+use App\Http\Controllers\admin\JurusanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,19 @@ use App\Http\Controllers\Tes;
 
 Route::get('/', [AuthController::class, 'index']);
 Route::group(['middleware' => ['is_operator']], function () {
+    //Dashboard
     Route::get('/admin', [Dashboard::class, 'main']);
     Route::get('/guru', [GuruController::class, 'index']);
     Route::get('/kepangkatan', [KepangkatanController::class, 'index']);
+
+    //Jurusan
+    Route::controller(JurusanController::class)->group(function () {
+        Route::get('/jurusan', 'index');
+        Route::post('/tambahjurusan', 'store');
+        Route::post('/editjurusan/{id}', 'update');
+        Route::get('/hapusjurusan/{id}', 'destroy');
+    });
+
 });
 Route::group(['middleware' => ['is_guru']], function(){
     Route::get('/guru', [DashboardGuru::class, 'index']);

@@ -34,7 +34,8 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
+    <div class="flash-data" data-flashdata="{{ session()->get('pesan') }}"></div>
+    <div class="flash-error" data-flashdata="{{ session()->get('errmsg') }}"></div>
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{ asset('foto/rpl.png') }}" alt="Logo RPL" height="150" width="150">
@@ -102,25 +103,25 @@
                with font-awesome or any other icon font library -->
           <li class="nav-header">Utama</li>
           <li class="nav-item">
-            <a href="/admin" class="nav-link {{ $nama_file_view == "admin/main" ? 'active' : '' }}">
+            <a href="/admin" class="nav-link {{ $judul == "Dashboard" ? 'active' : '' }}">
               <i class="nav-icon fas fa-home"></i>
               <p>Home</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/jurusan" class="nav-link {{ $nama_file_view == "admin/jurusan" ? 'active' : '' }}">
+            <a href="/jurusan" class="nav-link {{ $judul == "Jurusan" ? 'active' : '' }}">
               <i class="nav-icon fas fa-school"></i>
               <p>Jurusan</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/kelas" class="nav-link {{ $nama_file_view == "admin/kelas" ? 'active' : '' }}">
+            <a href="/kelas" class="nav-link {{ $judul == "Kelas" ? 'active' : '' }}">
               <i class="nav-icon fas fa-store"></i>
               <p>Kelas</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link {{ $nama_file_view == "admin/siswa" ? 'active' : '' }}">
+            <a href="pages/widgets.html" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>Siswa</p>
             </a>
@@ -156,7 +157,7 @@
           </li>-->
           <li class="nav-header">Guru dan GTK</li>
           <li class="nav-item">
-            <a href="guru" class="nav-link {{ $nama_file_view == "admin/guru" ? 'active' : '' }}">
+            <a href="guru" class="nav-link {{ $judul == "Guru" ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p>Guru</p>
             </a>

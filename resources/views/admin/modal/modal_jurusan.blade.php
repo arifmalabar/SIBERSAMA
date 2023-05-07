@@ -1,7 +1,7 @@
-<div class="modal fade" id="modal-jabatan">
+<div class="modal fade" id="modal-jurusan-tambah">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-info">
+            <div class="modal-header bg-success">
                 <h4 class="modal-title">Tambah Jabatan</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -14,14 +14,14 @@
                         <div class="col-md-12">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Nama Jabatan</label>
+                                <label>Nama Jurusan</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="fa fa-user"></i>
+                                        <i class="fa fa-users"></i>
                                     </span>
                                     </div>
-                                    <input type="text" value="" placeholder="Masukan Nama Jabatan" name="nama_jabatan" class="form-control">
+                                    <input type="text" placeholder="Masukan Nama Jurusan" name="nama_jurusan" class="form-control">
                                 </div>
                             </div>
                         </div>
