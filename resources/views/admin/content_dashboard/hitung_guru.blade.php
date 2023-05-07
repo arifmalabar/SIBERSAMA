@@ -35,10 +35,10 @@
     <div class="col-md-12">
         <div class="info-box mb-3 bg-warning">
           <span class="info-box-icon"><i class="fa fa-bar-chart"></i></span>
-  
+
           <div class="info-box-content">
-            <span class="info-box-text">Data Kaprodi</span>
-            <span class="info-box-number">12</span>
+            <span class="info-box-text">Total Data</span>
+            <span class="info-box-number">52</span>
           </div>
           <!-- /.info-box-content -->
         </div>
