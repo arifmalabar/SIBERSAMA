@@ -6,10 +6,27 @@ use App\Models\admin\Jurusan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreJurusanRequest;
 use App\Http\Requests\UpdateJurusanRequest;
+use App\Repos\JurusanRepos;
+use App\ServiceData\JurusanService;
 
 
 class JurusanController extends Controller
 {
+
+    /**
+     * @param BaseRepos $repos
+     */
+    private JurusanService $jurusanService;
+    public function __construct()
+    {
+        $jurusan = new Jurusan();
+        $this->jurusanService = new JurusanService($jurusan);
+    }
+
+    /**
+     * @param JurusanRepos $repos
+     */
+
     public function index()
     {
         $data = array(
@@ -22,10 +39,7 @@ class JurusanController extends Controller
 
     public function store(StoreJurusanRequest $request)
     {
-        $query = Jurusan::create([
-            'nama_jurusan' => $request->nama_jurusan,
-            'NIP' => $request->NIP
-        ]);
+        $query = $this->jurusanService->insertDataJurusan($request);
         if($query){
             return redirect('/jurusan')->with('pesan', 'Berhasil menambah data');
         } else {
@@ -34,19 +48,12 @@ class JurusanController extends Controller
     }
     public function getDataJurusan()
     {
-        return Jurusan::all();
+        return $this->jurusanService->handleGetData();
     }
-    private function getIdJurusan($id)
-    {
-        return Jurusan::find($id);
-    }
-
     public function update(UpdateJurusanRequest $request, $id)
     {
-        $jurusan = $this->getIdJurusan($id);
-        $jurusan->nama_jurusan = $request->nama_jurusan;
-        $jurusan->save();
-        if($jurusan)
+        $query = $this->jurusanService->updateDataJurusan($request, $id);
+        if($query)
         {
             return redirect('/jurusan')->with('pesan', 'berhasil update data');
         } else {
@@ -56,9 +63,8 @@ class JurusanController extends Controller
 
     public function destroy($id)
     {
-        $jurusan = $this->getIdJurusan($id);
-        $jurusan->delete();
-        if($jurusan){
+        $query = $this->jurusanService->deletDataJurusan($id);
+        if($query){
             return redirect('/jurusan')->with('pesan', 'berhasil tambah data');
         } else {
             return redirect('/jurusan')->withErrors('errmsg', 'gagal hapus data');

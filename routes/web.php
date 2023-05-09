@@ -10,6 +10,7 @@ use App\Http\Controllers\siswa\DashboardSiswa;
 use App\Http\Controllers\kepala_sekolah\DashboardKepsek;
 use App\Http\Controllers\Tes;
 use App\Http\Controllers\admin\JurusanController;
+use App\Http\Controllers\admin\KelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,6 @@ Route::group(['middleware' => ['is_operator']], function () {
     Route::get('/admin', [Dashboard::class, 'main']);
     Route::get('/guru', [GuruController::class, 'index']);
     Route::get('/kepangkatan', [KepangkatanController::class, 'index']);
-
     //Jurusan
     Route::controller(JurusanController::class)->group(function () {
         Route::get('/jurusan', 'index');
@@ -36,7 +36,13 @@ Route::group(['middleware' => ['is_operator']], function () {
         Route::post('/editjurusan/{id}', 'update');
         Route::get('/hapusjurusan/{id}', 'destroy');
     });
-
+    //kelas
+    Route::controller(KelasController::class)->group(function (){
+        Route::get('/kelas', 'index');
+        Route::post('/tambahkelas', 'store');
+        Route::post('/editkelas/{id}', 'update');
+        Route::get('/hapuskelas/{id}', 'destroy');
+    });
 });
 Route::group(['middleware' => ['is_guru']], function(){
     Route::get('/guru', [DashboardGuru::class, 'index']);

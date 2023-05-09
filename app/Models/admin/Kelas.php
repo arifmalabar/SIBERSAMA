@@ -11,6 +11,9 @@ class Kelas extends Model
 {
     use HasFactory;
     protected $table = "tb_kelas";
+    protected $fillable = ["kode_kelas", "kode_jurusan", "nama_kelas"];
+    protected $primaryKey = "kode_kelas";
+    public $timestamps = false;
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'kode_kelas', 'kode_kelas');

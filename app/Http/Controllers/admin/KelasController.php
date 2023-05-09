@@ -2,12 +2,29 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\admin\Jurusan;
 use App\Models\admin\Kelas;
 use App\Http\Requests\StoreKelasRequest;
 use App\Http\Requests\UpdateKelasRequest;
+use App\Http\Controllers\admin\JurusanController;
+use App\ServiceData\KelasService;
+use App\Http\Controllers\Pesan;
 
 class KelasController extends Controller
 {
+    private $jurusan, $kelas_service, $model;
+
+    /**
+     * @param $jurusan
+     */
+    public function __construct()
+    {
+        $this->model = new Kelas();
+        $this->jurusan = new JurusanController();
+        $this->kelas_service = new KelasService($this->model);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,72 +32,46 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $data = array(
+            "judul" => "Kelas",
+            "data_kelas" => $this->kelas_service->handlerGetData(),
+            "data_jurusan" => $this->jurusan->getDataJurusan()
+        );
+        return view("admin.kelas", $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreKelasRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreKelasRequest $request)
     {
-        //
+        $query = $this->kelas_service->handlerTambahData($request);
+        if($query)
+        {
+            return Pesan::pesanBerhasil("/kelas", "pesan", "berhasil menyimpan data");
+        } else {
+            return Pesan::pesanGagal("/kelas", "pesan", "Gagal menyimpan data");
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\admin\Kelas  $kelas
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Kelas $kelas)
+    public function update(UpdateKelasRequest $request, $id)
     {
-        //
+        $query = $this->kelas_service->hanlderEditData($request, $id);
+        if($query)
+        {
+            return Pesan::pesanBerhasil("/kelas", "pesan", "berhasil mengubah data");
+        } else {
+            return Pesan::pesanGagal("/kelas", "pesan", "Gagal mengubah data");
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\admin\Kelas  $kelas
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Kelas $kelas)
+    public function destroy($id)
     {
-        //
+        $query = $this->kelas_service->handlerDeleteData($id);
+        if($query)
+        {
+            return Pesan::pesanBerhasil("/kelas", "pesan", "berhasil menghapus data");
+        } else {
+            return Pesan::pesanGagal("/kelas", "pesan", "Gagal menghapus data");
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateKelasRequest  $request
-     * @param  \App\Models\admin\Kelas  $kelas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateKelasRequest $request, Kelas $kelas)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\admin\Kelas  $kelas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Kelas $kelas)
-    {
-        //
-    }
 }
