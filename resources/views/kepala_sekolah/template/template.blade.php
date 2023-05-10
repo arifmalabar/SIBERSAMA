@@ -106,7 +106,7 @@
                          with font-awesome or any other icon font library -->
                     <li class="nav-header">Data Umum</li>
                     <li class="nav-item menu-open">
-                        <a href="#" class="nav-link active">
+                        <a href="/kepala_sekolah" class="nav-link {{ $judul == "Dashboard" ? "active" : "" }}">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Dashboard
@@ -114,7 +114,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#" class="nav-link {{ $judul == "Data Pelanggar" ? "active" : "" }}">
                             <i class="nav-icon fas fa-clipboard"></i>
                             <p>
                                 Pelanggaran PerKelas
@@ -123,7 +123,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link active">
+                                <a href="/kepala_sekolah/pelanggar/1" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Kelas X RPL D</p>
                                 </a>
@@ -131,7 +131,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#" class="nav-link {{ $judul == "Laporan Perbandingan" || $judul == "Laporan Pelanggaran" ? "active" : "" }}">
                             <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
                                 Statistik
@@ -140,19 +140,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Laporan Perbandingan Pelanggaran</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="/kepala_sekolah/statistik/pelanggaran" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Laporan Pelanggaran</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="/kepala_sekolah/statistik/perbandingan" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Laporan Perbandingan Pelanggaran</p>
                                 </a>
@@ -160,19 +154,11 @@
                         </ul>
                     </li>
                     <li class="nav-header">Akun & Autentikasi</li>
-                    <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
+                    <li class="nav-item {{ $judul == "Akun" ? "active" : "" }}">
+                        <a href="/kepala_sekolah/akun" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Akun
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-sign-out-alt"></i>
-                            <p>
-                                Logout
                             </p>
                         </a>
                     </li>

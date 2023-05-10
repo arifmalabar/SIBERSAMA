@@ -10,14 +10,11 @@ use App\Http\Requests\UpdateKelasRequest;
 use App\Http\Controllers\admin\JurusanController;
 use App\ServiceData\KelasService;
 use App\Http\Controllers\Pesan;
+use App\Http\Controllers\TemplateController;
 
 class KelasController extends Controller
 {
     private $jurusan, $kelas_service, $model;
-
-    /**
-     * @param $jurusan
-     */
     public function __construct()
     {
         $this->model = new Kelas();
@@ -25,21 +22,20 @@ class KelasController extends Controller
         $this->kelas_service = new KelasService($this->model);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data = array(
             "judul" => "Kelas",
-            "data_kelas" => $this->kelas_service->handlerGetData(),
+            "data_kelas" => $this->getDataKelas(),
             "data_jurusan" => $this->jurusan->getDataJurusan()
         );
-        return view("admin.kelas", $data);
+        return TemplateController::templateHandler("admin/kelas", $data, "Kelas");
     }
 
+    public function getDataKelas()
+    {
+        return $this->kelas_service->handlerGetData();
+    }
 
     public function store(StoreKelasRequest $request)
     {

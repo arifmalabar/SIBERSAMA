@@ -128,7 +128,18 @@
             <a href="pages/widgets.html" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>Siswa</p>
+                <i class="right fas fa-angle-left"></i>
             </a>
+              <ul class="nav nav-treeview">
+                  @foreach($data_kelas_ul as $kelas)
+                      <li class="nav-item">
+                          <a href="/siswa/{{$kelas->kode_kelas}}" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>{{ $kelas->nama_kelas }}</p>
+                          </a>
+                      </li>
+                  @endforeach
+              </ul>
           </li>
           <!--<li class="nav-item menu-open">
             <a href="#" class="nav-link active">
@@ -161,28 +172,15 @@
           </li>-->
           <li class="nav-header">Guru dan GTK</li>
           <li class="nav-item">
-            <a href="guru" class="nav-link {{ $judul == "Guru" ? 'active' : '' }}">
+            <a href="/dataguru" class="nav-link {{ $judul == "Guru" ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p>Guru</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="/kepalasekolah" class="nav-link {{ $judul == "Kepala Sekolah" ? 'active': "" }}">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>Kepala Sekolah</p>
-            </a>
-          </li>
-          <li class="nav-header">Laporan</li>
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>Rekap Data Siswa</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>Rekap Data Guru</p>
             </a>
           </li>
         </ul>

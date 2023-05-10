@@ -4,11 +4,12 @@ namespace App\Http\Controllers\siswa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\TemplateController;
 
 class DashboardSiswa extends Controller
 {
     public function index()
     {
-        return view('siswa/main');
+        return TemplateController::templateHandler("siswa/main", array(), "Dashboard");
     }
 }

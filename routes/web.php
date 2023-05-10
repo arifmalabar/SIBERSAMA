@@ -11,6 +11,13 @@ use App\Http\Controllers\kepala_sekolah\DashboardKepsek;
 use App\Http\Controllers\Tes;
 use App\Http\Controllers\admin\JurusanController;
 use App\Http\Controllers\admin\KelasController;
+use App\Http\Controllers\admin\SiswaController;
+use App\Http\Controllers\admin\KepalaSekolahController;
+use App\http\Controllers\siswa\AkunSiswa;
+use App\Http\Controllers\siswa\RiwayatPelanggaran;
+use App\Http\Controllers\kepala_sekolah\AkunKepsek;
+use App\Http\Controllers\kepala_sekolah\DataPelanggar;
+use App\Http\Controllers\kepala_sekolah\StatistikPelanggar;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +34,8 @@ Route::get('/', [AuthController::class, 'index']);
 Route::group(['middleware' => ['is_operator']], function () {
     //Dashboard
     Route::get('/admin', [Dashboard::class, 'main']);
-    Route::get('/guru', [GuruController::class, 'index']);
-    Route::get('/kepangkatan', [KepangkatanController::class, 'index']);
+    //Route::get('/guru', [GuruController::class, 'index']);
+    //Route::get('/kepangkatan', [KepangkatanController::class, 'index']);
     //Jurusan
     Route::controller(JurusanController::class)->group(function () {
         Route::get('/jurusan', 'index');
@@ -43,15 +50,42 @@ Route::group(['middleware' => ['is_operator']], function () {
         Route::post('/editkelas/{id}', 'update');
         Route::get('/hapuskelas/{id}', 'destroy');
     });
+    //siswa
+    Route::controller(SiswaController::class)->group(function (){
+        Route::get('/siswa/{id}', 'index');
+        Route::post('/tambahsiswa/{id}', 'store');
+        Route::post('/editsiswa/{id}', 'update');
+        Route::get('/hapussiswa/{id}', 'destroy');
+    });
+    //guru
+    Route::controller(GuruController::class)->group(function (){
+        Route::get('/dataguru/', 'index');
+        Route::post('/tambahdataguru', 'store');
+        Route::post('/editdataguru/{id}', 'update');
+        Route::get('/hapusdataguru/{id}', 'destroy');
+    });
+    //kepalasekolah
+    Route::controller(KepalaSekolahController::class)->group(function (){
+        Route::get('/kepalasekolah/', 'index');
+        Route::post('/tambahkepalasekolah', 'store');
+        Route::post('/editkepalasekolah/{id}', 'update');
+        Route::get('/hapuskepalasekolah/{id}', 'destroy');
+    });
 });
 Route::group(['middleware' => ['is_guru']], function(){
     Route::get('/guru', [DashboardGuru::class, 'index']);
 });
 Route::group(['middleware' => ['is_siswa']], function(){
     Route::get('/siswa', [DashboardSiswa::class, 'index']);
+    Route::get('/siswa/riwayatpelanggaran/{semester}', [RiwayatPelanggaran::class, 'index']);
+    Route::get('/akun', [AkunSiswa::class, 'index']);
 });
 Route::group(['middleware' => ['is_kepsek']], function (){
     Route::get('/kepala_sekolah', [DashboardKepsek::class, 'index']);
+    Route::get('/kepala_sekolah/pelanggar/{id}', [DataPelanggar::class, 'index']);
+    Route::get('/kepala_sekolah/statistik/perbandingan', [StatistikPelanggar::class, 'index']);
+    Route::get('/kepala_sekolah/statistik/pelanggaran', [StatistikPelanggar::class, 'laporanall']);
+    Route::get('/kepala_sekolah/akun', [AkunKepsek::class, 'index']);
 });
 Route::get('/tes', [Tes::class, 'index']);
 Route::get('/login', [AuthController::class, 'index']);

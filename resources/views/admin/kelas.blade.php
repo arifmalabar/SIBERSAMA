@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Jurusan</h3>
+                            <h3 class="card-title">Data Kelas</h3>
                             <div class="card-tools">
                                 <button class="btn btn-sm btn-success" data-target="#modal-jurusan-tambah" data-toggle="modal">
                                     <i class="fa fa-plus"></i> Tambah Data
@@ -35,8 +35,8 @@
                                         <td><center><span class="badge badge-success">{{ $kelas->jurusan->nama_jurusan }}</span></center></td>
                                         <td>
                                             <center>
-                                                <a class="btn btn-sm btn-danger btn_del" href="/hapuskelas/{{ $kelas->kode_kelas }}" ><i class="fa fa-trash"></i></a>&nbsp;
-                                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="modal-jurusan-update{{ $kelas->kode_kelas }}"><i class="fa fa-edit"></i></button>
+                                                <a class="btn btn-sm btn-outline-danger btn_del" href="/hapuskelas/{{ $kelas->kode_kelas }}" ><i class="fa fa-trash"></i></a>&nbsp;
+                                                <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="modal-jurusan-update{{ $kelas->kode_kelas }}"><i class="fa fa-edit"></i></button>
                                             </center>
                                         </td>
                                     </tr>

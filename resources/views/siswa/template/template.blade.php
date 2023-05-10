@@ -108,8 +108,8 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-header">Data Umum</li>
-            <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+            <li class="nav-item">
+                <a href="/siswa" class="nav-link {{ $judul == "Dashboard" ? "active" : "" }}">
                     <i class="nav-icon fas fa-home"></i>
                     <p>
                         Dashboard
@@ -117,7 +117,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link {{ $judul == "Riwayat Pelanggaran" ? "active" : "" }}">
                   <i class="nav-icon fas fa-clipboard"></i>
                   <p>
                     Riwayat Pelanggaran
@@ -126,7 +126,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link active">
+                    <a href="/siswa/riwayatpelanggaran/1" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Semester 1</p>
                     </a>
@@ -135,20 +135,13 @@
             </li>
             <li class="nav-header">Akun & Autentikasi</li>
             <li class="nav-item">
-                <a href="pages/widgets.html" class="nav-link">
+                <a href="/akun" class="nav-link {{ $judul == "Akun" ? "active" : "" }}">
                 <i class="nav-icon fas fa-user"></i>
                     <p>
                         Akun
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-sign-out-alt"></i>
-                    <p>
-                        Logout
-                    </p>
-                </a>
             </li>
         </ul>
       </nav>

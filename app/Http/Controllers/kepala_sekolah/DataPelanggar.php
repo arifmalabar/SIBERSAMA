@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Http\Request;
 
-class DashboardKepsek extends Controller
+class DataPelanggar extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return TemplateController::templateHandler("kepala_sekolah/main", array(), "Dashboard");
+        return TemplateController::templateHandler("kepala_sekolah/main", array(), "Data Pelanggar");
     }
 }

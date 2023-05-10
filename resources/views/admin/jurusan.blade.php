@@ -34,8 +34,8 @@
                                         <td>{{ $jurusan->nama_jurusan }}</td>
                                         <td>
                                             <center>
-                                                <a class="btn btn-sm btn-danger btn_del" href="/hapusjurusan/{{ $jurusan->kode_jurusan }}" ><i class="fa fa-trash"></i></a>&nbsp;
-                                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-jurusan-edit{{ $jurusan->kode_jurusan }}"><i class="fa fa-edit"></i></button>
+                                                <a class="btn btn-sm btn-outline-danger btn_del" href="/hapusjurusan/{{ $jurusan->kode_jurusan }}" ><i class="fa fa-trash"></i></a>&nbsp;
+                                                <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#modal-jurusan-edit{{ $jurusan->kode_jurusan }}"><i class="fa fa-edit"></i></button>
                                             </center>
                                         </td>
                                         @include('admin.modal.modal_edit_jurusan')

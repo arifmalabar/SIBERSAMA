@@ -3,20 +3,31 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TemplateController;
+use App\Models\admin\Kelas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\admin\KepangkatanController;
 use App\Http\Controllers\admin\JabatanController;
 
 class Dashboard extends Controller
 {
+    private $jurusan, $kelas;
+
+    /**
+     * @param $jurusan
+     */
+    public function __construct()
+    {
+        $this->jurusan = new JurusanController();
+        $this->kelas = new KelasController();
+    }
+
     public function main()
     {
         $data = array(
-            'judul' => 'Dashboard',
-            'nama_file_view' => 'admin/main',
             'kepangkatan' => KepangkatanController::getPangkat(),
-            'jabatan' => JabatanController::getjabatan()
+            'jabatan' => JabatanController::getjabatan(),
         );
-        return view('admin/main', $data);
+        return TemplateController::templateHandler("admin/main", $data, "Dashboard");
     }
 }

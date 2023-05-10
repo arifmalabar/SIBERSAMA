@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\TemplateController;
 use App\Models\admin\Jurusan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreJurusanRequest;
@@ -34,7 +35,7 @@ class JurusanController extends Controller
             'nama_file_view' => 'admin/jurusan',
             'data_jurusan' => $this->getDataJurusan()
         );
-        return view('admin/jurusan', $data);
+        return TemplateController::templateHandler("admin/jurusan", $data, "Jurusan");
     }
 
     public function store(StoreJurusanRequest $request)

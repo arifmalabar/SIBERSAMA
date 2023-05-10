@@ -11,20 +11,20 @@
             <div class="text-center">
                 <img class="profile-user-img img-fluid img-circle" src="{{asset('foto/profile/3.png')}}" width="50px" height="50px" alt="User profile picture">
             </div>
-            <h3 class="profile-username text-center">{{ session()->get('nama') }}</h3>
+            <h3 class="profile-username text-center">{{ auth()->guard('siswa')->user()->nama_siswa }}</h3>
             <p class="text-muted text-center">Siswa</p>
             <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                    <b>NISN</b> <a class="float-right">{{ session()->get('NIP') }}</a>
+                    <b>NISN</b> <a class="float-right">{{ auth()->guard('siswa')->user()->NISN }}</a>
                 </li>
                 <li class="list-group-item">
-                    <b>Nama User</b> <a class="float-right">{{ session()->get('nama') }}</a>
+                    <b>Nama User</b> <a class="float-right">{{ auth()->guard('siswa')->user()->nama_siswa }}</a>
                 </li>
                 <li class="list-group-item">
-                    <b>Kelas</b> <a class="float-right"><span class="badge badge-danger">{{ session()->get('nama_kelas') }}</span></a>
+                    <b>Kelas</b> <a class="float-right"><span class="badge badge-danger">{{ auth()->guard('siswa')->user()->kelas->nama_kelas }}</span></a>
                 </li>
                 <li class="list-group-item">
-                    <b>Jurusan</b> <a class="float-right"><span class="badge badge-success">{{ session()->get('nama_jurusan') }}</span></a>
+                    <b>Jurusan</b> <a class="float-right"><span class="badge badge-success">{{ auth()->guard('siswa')->user()->kelas->jurusan->nama_jurusan }}</span></a>
                 </li>
             </ul>
         </div>

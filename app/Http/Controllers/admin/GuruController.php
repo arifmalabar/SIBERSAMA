@@ -6,6 +6,7 @@ use App\Models\admin\Guru;
 use App\Http\Requests\StoreGuruRequest;
 use App\Http\Requests\UpdateGuruRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TemplateController;
 
 class GuruController extends Controller
 {
@@ -17,9 +18,9 @@ class GuruController extends Controller
     public function index()
     {
         $data = array(
-            'nama_file_view' => 'admin/guru',
+            'data_guru' => '',
         );
-        return view('template/main', $data);
+        return TemplateController::templateHandler("admin/guru", $data, "Guru");
     }
 
     /**
