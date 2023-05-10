@@ -18,7 +18,7 @@ class OperatorMidleware
     {
         if(auth()->guard('operator')->check() == null)
         {
-            return redirect('/login');
+            return redirect('/login')->with('errmsg', 'anda belum login');
         }
         return $next($request);
     }

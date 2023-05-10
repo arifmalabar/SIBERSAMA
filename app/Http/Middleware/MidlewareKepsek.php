@@ -19,7 +19,7 @@ class MidlewareKepsek
     {
         if(auth()->guard('guru')->check() == null)
         {
-            return redirect('/login');
+            return redirect('/login')->with('errmsg', 'anda belum login');
         }
         return $next($request);
     }

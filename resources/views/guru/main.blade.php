@@ -1,17 +1,14 @@
+@extends("guru.template.template")
+@section("content")
+    @include("guru.section.header")
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                @include("guru.section.atas")
+            </div>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <p>{{ "hello from guru" }}</p>
-    <form action="/do_logout" method="post">
-        @csrf
-        <button type="submit">Logout!</button>
-    </form>
-</body>
-</html>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+@endsection

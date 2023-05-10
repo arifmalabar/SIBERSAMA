@@ -19,7 +19,7 @@ class MidlewareGuru
     {
         if(auth()->guard('guru')->check() == null)
         {
-            return redirect('/login')->with('pesan', 'anda belum login');
+            return redirect('/login')->with('errmsg', 'anda belum login');
         }
         return $next($request);
     }

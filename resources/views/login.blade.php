@@ -23,7 +23,7 @@
   <link rel="shortcut icon" href="{{asset('foto/k8.png')}}">
   <style type="text/css">
     .bglogin {
-      background-repeat: no-repeat; 
+      background-repeat: no-repeat;
       background-position: center;
       background-image: url('http://127.0.0.1/8xamscbt/assets/bgsklh.png');
     }
@@ -46,6 +46,7 @@
   </style>
 </head>
 <body class="hold-transition login-page" style="">
+<div class="flash-error" data-flashdata="{{ session()->get('errmsg') }}"></div>
 <div class="preloader">
   <div class="loading">
     <img src="{{ asset('foto/rpl.png') }}" width="150px">
@@ -104,7 +105,7 @@
         <!-- /.social-auth-links -->
         <p class="mb-0">
           <a href="#" class="text-center">Login Page By &copy; ROA 2023</a>
-          
+
         </p>
       </div>
       <!-- /.card-body -->
@@ -115,7 +116,7 @@
 <!-- /.login-box -->
 <footer>
   <br>
- 
+
   <div class="row">
     <div class="col-sm">
       <img src="{{ asset('foto/rpl.png') }}" width="100px" height="100px">
@@ -164,7 +165,7 @@
     username.value = "asa";
     password.value = "asas";
   }
-  
+
   //
   const flashdata = $('.flash-data').data('flashdata');
   if(flashdata){
@@ -189,7 +190,7 @@
       $(".login").addClass("disabled");
     }
   });
-  
+
 </script>
 </body>
 </html>

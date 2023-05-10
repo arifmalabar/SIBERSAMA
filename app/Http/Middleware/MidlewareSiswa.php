@@ -19,7 +19,7 @@ class MidlewareSiswa
     {
         if(auth()->guard('siswa')->check() == null)
         {
-            return redirect('/login');
+            return redirect('/login')->with('errmsg', 'anda belum login');
         }
         return $next($request);
     }

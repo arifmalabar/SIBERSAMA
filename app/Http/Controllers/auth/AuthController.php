@@ -35,7 +35,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/siswa');
         } else{
-            return redirect('/login')->with('pesan', 'username dan password tidak tepat');
+            return redirect('/login')->with('errmsg', 'username dan password tidak tepat');
         }
     }
     public function on_logout(Request $request)

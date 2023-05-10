@@ -9,6 +9,10 @@ class DashboardGuru extends Controller
 {
     public function index()
     {
-        return view('guru/main');
+        $data = array(
+            "judul" => "Dashboard",
+
+        );
+        return view('guru/main', $data);
     }
 }
