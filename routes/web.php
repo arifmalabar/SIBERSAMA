@@ -18,7 +18,11 @@ use App\Http\Controllers\siswa\RiwayatPelanggaran;
 use App\Http\Controllers\kepala_sekolah\AkunKepsek;
 use App\Http\Controllers\kepala_sekolah\DataPelanggar;
 use App\Http\Controllers\kepala_sekolah\StatistikPelanggar;
-
+use App\Http\Controllers\guru\Laporan;
+use App\Http\Controllers\guru\EntryPelanggaran;
+use App\Http\Controllers\guru\RemisiPelanggaran;
+use App\Http\Controllers\guru\DataJenisPereferensi;
+use App\Http\Controllers\guru\DataKriteria;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,6 +78,14 @@ Route::group(['middleware' => ['is_operator']], function () {
 });
 Route::group(['middleware' => ['is_guru']], function(){
     Route::get('/guru', [DashboardGuru::class, 'index']);
+    Route::get('/pereferensi', [\App\Http\Controllers\guru\DataPereferensi::class, 'index']);
+    Route::get('/jenis_kriteria', [DataKriteria::class, 'jk']);
+    Route::get('/remisi_pelanggaran', [RemisiPelanggaran::class, 'index']);
+    Route::get('/entry_pelanggaran', [EntryPelanggaran::class, 'index']);
+    Route::get('/laporan_pelanggaran', [Laporan::class, 'index']);
+    Route::get('/laporan_perbandingan', [Laporan::class, 'perbandingan']);
+    Route::get('/remisi', [RemisiPelanggaran::class, 'index']);
+    Route::get('/kriteria', [DataKriteria::class, 'index']);
 });
 Route::group(['middleware' => ['is_siswa']], function(){
     Route::get('/siswa', [DashboardSiswa::class, 'index']);

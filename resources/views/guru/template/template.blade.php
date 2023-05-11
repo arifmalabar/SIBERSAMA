@@ -107,25 +107,25 @@
                          with font-awesome or any other icon font library -->
                     <li class="nav-header">Utama</li>
                     <li class="nav-item">
-                        <a href="/admin" class="nav-link {{ $judul == "Dashboard" ? 'active' : '' }}">
+                        <a href="/guru" class="nav-link {{ $judul == "Dashboard" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-home"></i>
                             <p>Home</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/jurusan" class="nav-link {{ $judul == "Jurusan" ? 'active' : '' }}">
+                        <a href="/pereferensi" class="nav-link {{ $judul == "Jurusan" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-school"></i>
                             <p>Data Pereferensi</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/kelas" class="nav-link {{ $judul == "Kelas" ? 'active' : '' }}">
+                        <a href="/kriteria" class="nav-link {{ $judul == "Kelas" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-store"></i>
                             <p>Data Kriteria</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
+                        <a href="/jenis_kriteria" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Jenis Kriteria</p>
                         </a>
@@ -133,21 +133,15 @@
 
                     <li class="nav-header">Pelanggaran</li>
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
+                        <a href="/entry_pelanggaran" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Entry Pelanggaran</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
+                        <a href="/remisi_pelanggaran" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Remisi Pelanggaran</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>Data MPK</p>
                         </a>
                     </li>
                     <!--<li class="nav-item menu-open">
@@ -179,26 +173,26 @@
                         </li>
                       </ul>
                     </li>-->
-
+                    <!--
                     <li class="nav-header">Laporan</li>
                     <li class="nav-item">
-                        <a href="pages/calendar.html" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>Laporan <Pelanggaran></Pelanggaran></p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/calendar.html" class="nav-link">
+                        <a href="/laporan_perbandingan" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>Laporan Perbandingan</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/calendar.html" class="nav-link">
+                        <a href="/laporan_pelanggaran" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>Penentuan Siswa Bermasalah</p>
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

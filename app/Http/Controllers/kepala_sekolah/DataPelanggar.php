@@ -10,6 +10,6 @@ class DataPelanggar extends Controller
 {
     public function index($id)
     {
-        return TemplateController::templateHandler("kepala_sekolah/main", array(), "Data Pelanggar");
+        return TemplateController::templateHandler("kepala_sekolah/pelanggaran_perkelas", array(), "Data Pelanggar");
     }
 }
