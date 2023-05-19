@@ -6,12 +6,12 @@
         <div class="card-body pt-0">
             <div class="row">
                 <div class="col-7">
-                    <h2 class="lead"><b>Nicole Pearson</b></h2>
-                    <p class="text-muted text-white text-sm"><b>NIP: </b></p>
+                    <h2 class="lead"><b>{{ $guru->nama }}</b></h2>
+                    <p class="text-muted text-white text-sm"><b>NIP: {{ $guru->NIP }}</b></p>
                     <p class="text-muted text-white text-sm"><b>Status: <span class="badge badge-success">Guru</span></b></p>
                     <ul class="ml-4 mb-0 fa-ul text-white text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-envelope"></i></span> ridhoarif40@gmail.com</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-calendar"></i></span> Monday, 19 Dec 2023</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-envelope"></i></span> {{ $guru->username }}</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-calendar"></i></span> {{ $guru->last_access }}</li>
                     </ul>
                 </div>
                 <div class="col-5 text-center">

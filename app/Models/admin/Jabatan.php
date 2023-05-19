@@ -9,4 +9,6 @@ class Jabatan extends Model
 {
     use HasFactory;
     protected $table = "tb_jabatan";
+    public $primaryKey = "kd_jabatan";
+    public $incrementing = false;
 }

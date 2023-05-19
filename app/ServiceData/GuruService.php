@@ -11,9 +11,9 @@ class GuruService
     /**
      * @param $guruRepos
      */
-    public function __construct($guruRepos)
+    public function __construct($guru)
     {
-        $this->guruRepos = $guruRepos;
+        $this->guruRepos = new GuruRepos($guru);
     }
     public function handlerGetData()
     {
@@ -22,12 +22,14 @@ class GuruService
     public function handlerInsertData(StoreGuruRequest $request)
     {
         $data = $request->validated();
+        $data['password'] = bcrypt($data['password']);
         $data['role'] = 1;
         return $this->guruRepos->simpanData($data);
     }
     public function handlerUpdateData(UpdateGuruRequest $request, $id)
     {
         $data = $request->validated();
+        $data['password'] = bcrypt($data['password']);
         $data['role'] = 1;
         return $this->guruRepos->updateData($data);
     }

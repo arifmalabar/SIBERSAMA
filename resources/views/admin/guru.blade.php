@@ -32,7 +32,9 @@
             </div>
             <div class="col-lg-12">
                 <div class="row">
-                    @include('admin.content_dashboard.account_guru')
+                    @foreach($data_guru as $guru)
+                        @include('admin.content_dashboard.account_guru')
+                    @endforeach
                 </div>
             </div>
         </div>

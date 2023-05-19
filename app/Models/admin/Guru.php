@@ -9,4 +9,7 @@ class Guru extends Model
 {
     use HasFactory;
     protected $table = "tb_guru";
+    protected $primaryKey = "NIP";
+    protected $fillable = ['NIP', 'nama', 'username', 'password', 'role', 'last_access', 'kd_jabatan', 'kode_pangkat'];
+    public $timestamps = false;
 }

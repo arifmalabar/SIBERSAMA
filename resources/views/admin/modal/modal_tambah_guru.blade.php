@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="/tambahjurusan">
+                <form role="form" method="post" action="/tambahdataguru">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -21,7 +21,7 @@
                                         <i class="fa fa-graduation-cap"></i>
                                     </span>
                                     </div>
-                                    <input type="text" placeholder="Masukan NIP Guru" name="NIP" class="form-control">
+                                    <input type="text" placeholder="Masukan NIP Guru" required name="NIP" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                         <i class="fa fa-user"></i>
                                     </span>
                                     </div>
-                                    <input type="text" placeholder="Masukan Nama Guru" name="nama_guru" class="form-control">
+                                    <input type="text" placeholder="Masukan Nama Guru" required name="nama" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                         <i class="fa fa-envelope"></i>
                                     </span>
                                     </div>
-                                    <input type="email" placeholder="Masukan Username" name="username" class="form-control">
+                                    <input type="email" placeholder="Masukan Username" required name="username" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -63,8 +63,32 @@
                                         <i class="fa fa-key"></i>
                                     </span>
                                     </div>
-                                    <input type="password" placeholder="Masukan password" name="password" class="form-control">
+                                    <input type="password" placeholder="Masukan password" required name="password" class="form-control">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Multiple</label>
+                                <select class="form-control select2bs4" name="kd_jabatan" data-placeholder="Pilih Jbatan Guru" style="width: 100%;">
+                                    <option value="">Pilih Jabatan</option>
+                                    @foreach($data_jabatan as $s)
+                                        <option value="{{ $s->kd_jabatan }}">{{ $s->nama_jabatan }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Pangkat Guru</label>
+                                <select class="form-control select2bs4" name="kode_pangkat" data-placeholder="Pilih Pangkat Guru" style="width: 100%;">
+                                    <option value="">Pilih Jabatan</option>
+                                    @foreach($data_pangkat as $pangkat)
+                                        <option value="{{ $pangkat->kode_pangkat }}">{{ $pangkat->pangkat }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ class StoreGuruRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class StoreGuruRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'NIP' => 'required',
+            'nama' => 'required',
+            'username' => 'required|unique:tb_guru',
+            'password' => 'required',
+            'kd_jabatan' => 'required',
+            'kode_pangkat' => 'required'
         ];
     }
 }

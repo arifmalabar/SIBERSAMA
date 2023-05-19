@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Apr 2023 pada 10.56
+-- Waktu pembuatan: 19 Bulan Mei 2023 pada 15.49
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.0.15
 
@@ -73,7 +73,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2023_04_05_130955_ubah_guru', 4),
 (19, '2023_04_05_140429_kepangkatan_guru', 5),
 (20, '2023_04_05_141447_informasi_jabatan', 6),
-(21, '2023_04_09_044128_operator', 7);
+(21, '2023_04_09_044128_operator', 7),
+(22, '2023_04_30_064228_ubah_jurusan', 8),
+(23, '2023_04_30_064548_ubah_kelas', 9),
+(24, '2023_04_30_065117_kelas_edit', 10),
+(25, '2023_04_30_065220_kelas_ubah', 11);
 
 -- --------------------------------------------------------
 
@@ -118,9 +122,18 @@ CREATE TABLE `tb_guru` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(15) NOT NULL,
   `last_access` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `kd_jabatan` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kode_pangkat` char(15) COLLATE utf8mb4_unicode_ci NOT NULL
+  `kd_jabatan` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode_pangkat` char(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_guru`
+--
+
+INSERT INTO `tb_guru` (`NIP`, `nama`, `username`, `password`, `role`, `last_access`, `kd_jabatan`, `kode_pangkat`) VALUES
+('12919291212', 'bahrul', 'bahrul@gmail.com', '$2y$10$BnyKmFaNmbU99Jz29jU5BOeYbMCnb4GxF/p88jbLm999xtzutc3Oy', 1, '2023-05-18 07:07:19', 'JB-2', 'PK-1'),
+('197811920002021004', 'Arika Risma', 'arika@gmail.com', '$2y$10$LsY19Fs75rhV4t0IkYqmROgwBmQYJrJPhmT4lFhPgPnPUu5duhDk2', 1, '2023-05-10 00:30:38', 'JB-1', 'PK-1'),
+('2002121220230110004', 'Ridho Arif W', 'ridhoarif40@gmail.com', '$2y$10$p3vnUrnNJJsIUG.lO8xt9uBoMB.wvvxr6S.wmF/4hbgUWeeI.nf/u', 0, '2023-05-07 12:07:02', 'JB-1', 'PK-1');
 
 -- --------------------------------------------------------
 
@@ -147,6 +160,14 @@ CREATE TABLE `tb_jabatan` (
   `nama_jabatan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `tb_jabatan`
+--
+
+INSERT INTO `tb_jabatan` (`kd_jabatan`, `nama_jabatan`) VALUES
+('JB-1', 'Kepala Sekolah'),
+('JB-2', 'Guru');
+
 -- --------------------------------------------------------
 
 --
@@ -168,9 +189,16 @@ CREATE TABLE `tb_jenis_kriteria` (
 
 CREATE TABLE `tb_jurusan` (
   `kode_jurusan` bigint(20) UNSIGNED NOT NULL,
-  `NIP` char(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_jurusan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_jurusan`
+--
+
+INSERT INTO `tb_jurusan` (`kode_jurusan`, `nama_jurusan`) VALUES
+(9, 'Teknik Komputer Jaringan'),
+(10, 'Elektronika Industries');
 
 -- --------------------------------------------------------
 
@@ -181,9 +209,16 @@ CREATE TABLE `tb_jurusan` (
 CREATE TABLE `tb_kelas` (
   `kode_kelas` bigint(20) UNSIGNED NOT NULL,
   `kode_jurusan` bigint(20) UNSIGNED NOT NULL,
-  `NIP` char(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_jurusan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `nama_kelas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_kelas`
+--
+
+INSERT INTO `tb_kelas` (`kode_kelas`, `kode_jurusan`, `nama_kelas`) VALUES
+(3, 9, 'X TKJ D'),
+(4, 9, 'XI TKJ D');
 
 -- --------------------------------------------------------
 
@@ -195,6 +230,13 @@ CREATE TABLE `tb_kepangkatan` (
   `kode_pangkat` char(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pangkat` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_kepangkatan`
+--
+
+INSERT INTO `tb_kepangkatan` (`kode_pangkat`, `pangkat`) VALUES
+('PK-1', 'IIA');
 
 -- --------------------------------------------------------
 
@@ -228,10 +270,17 @@ CREATE TABLE `tb_mpkosis` (
 
 CREATE TABLE `tb_operator` (
   `NIP` char(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_operator`
+--
+
+INSERT INTO `tb_operator` (`NIP`, `nama`, `username`, `password`) VALUES
+('119999', 'Ridho', 'ridhoarif40@gmail.com', '$2y$10$4ECPwGYaUTMRRrWAE0OqouNf387K2ufJsxFTzPCJWcnNEG1abqbrW');
 
 -- --------------------------------------------------------
 
@@ -285,6 +334,13 @@ CREATE TABLE `tb_siswa` (
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_siswa`
+--
+
+INSERT INTO `tb_siswa` (`NISN`, `kode_kelas`, `nama_siswa`, `jenis_kelamin`, `username`, `password`) VALUES
+('27197004', 4, 'Ridho Arif Wicaksono', 'pria', '27197004@sch.id', '$2y$10$IOqUiJtweGakbBA6HN./j.zOyCyTu/0FoTYrozQsECRE8HDZOxIi2');
 
 -- --------------------------------------------------------
 
@@ -340,8 +396,8 @@ ALTER TABLE `personal_access_tokens`
 ALTER TABLE `tb_guru`
   ADD PRIMARY KEY (`NIP`),
   ADD UNIQUE KEY `tb_guru_username_unique` (`username`),
-  ADD KEY `tb_guru_kd_jabatan_foreign` (`kd_jabatan`),
-  ADD KEY `tb_guru_kode_pangkat_foreign` (`kode_pangkat`);
+  ADD KEY `kd_jabatan` (`kd_jabatan`),
+  ADD KEY `kode_pangkat` (`kode_pangkat`);
 
 --
 -- Indeks untuk tabel `tb_informasi`
@@ -367,16 +423,14 @@ ALTER TABLE `tb_jenis_kriteria`
 -- Indeks untuk tabel `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
-  ADD PRIMARY KEY (`kode_jurusan`),
-  ADD KEY `tb_jurusan_nip_foreign` (`NIP`);
+  ADD PRIMARY KEY (`kode_jurusan`);
 
 --
 -- Indeks untuk tabel `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
   ADD PRIMARY KEY (`kode_kelas`),
-  ADD KEY `tb_kelas_kode_jurusan_foreign` (`kode_jurusan`),
-  ADD KEY `tb_kelas_nip_foreign` (`NIP`);
+  ADD KEY `tb_kelas_kode_jurusan_foreign` (`kode_jurusan`);
 
 --
 -- Indeks untuk tabel `tb_kepangkatan`
@@ -455,7 +509,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -479,13 +533,13 @@ ALTER TABLE `tb_jenis_kriteria`
 -- AUTO_INCREMENT untuk tabel `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
-  MODIFY `kode_jurusan` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `kode_jurusan` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  MODIFY `kode_kelas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `kode_kelas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kriteria`
@@ -525,8 +579,8 @@ ALTER TABLE `users`
 -- Ketidakleluasaan untuk tabel `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  ADD CONSTRAINT `tb_guru_kd_jabatan_foreign` FOREIGN KEY (`kd_jabatan`) REFERENCES `tb_jabatan` (`kd_jabatan`),
-  ADD CONSTRAINT `tb_guru_kode_pangkat_foreign` FOREIGN KEY (`kode_pangkat`) REFERENCES `tb_kepangkatan` (`kode_pangkat`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_guru_ibfk_1` FOREIGN KEY (`kd_jabatan`) REFERENCES `tb_jabatan` (`kd_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_guru_ibfk_2` FOREIGN KEY (`kode_pangkat`) REFERENCES `tb_kepangkatan` (`kode_pangkat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_informasi`
@@ -541,17 +595,10 @@ ALTER TABLE `tb_jenis_kriteria`
   ADD CONSTRAINT `tb_jenis_kriteria_kode_kriteria_foreign` FOREIGN KEY (`kode_kriteria`) REFERENCES `tb_kriteria` (`kode_kriteria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tb_jurusan`
---
-ALTER TABLE `tb_jurusan`
-  ADD CONSTRAINT `tb_jurusan_nip_foreign` FOREIGN KEY (`NIP`) REFERENCES `tb_guru` (`NIP`);
-
---
 -- Ketidakleluasaan untuk tabel `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  ADD CONSTRAINT `tb_kelas_kode_jurusan_foreign` FOREIGN KEY (`kode_jurusan`) REFERENCES `tb_jurusan` (`kode_jurusan`),
-  ADD CONSTRAINT `tb_kelas_nip_foreign` FOREIGN KEY (`NIP`) REFERENCES `tb_guru` (`NIP`);
+  ADD CONSTRAINT `tb_kelas_kode_jurusan_foreign` FOREIGN KEY (`kode_jurusan`) REFERENCES `tb_jurusan` (`kode_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_mpkosis`

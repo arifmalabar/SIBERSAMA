@@ -7,85 +7,65 @@ use App\Http\Requests\StoreGuruRequest;
 use App\Http\Requests\UpdateGuruRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\TemplateController;
+use App\Models\admin\Jabatan;
+use App\ServiceData\GuruService;
 
 class GuruController extends Controller
 {
+    private GuruService $guruService;
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param GuruService $guruService
      */
+    public function __construct()
+    {
+        $model = new Guru();
+        $this->guruService = new GuruService($model);
+    }
+
     public function index()
     {
         $data = array(
-            'data_guru' => '',
+            'data_guru' => $this->getDataGuru(),
+            'data_pangkat' => KepangkatanController::getPangkat(),
+            'data_jabatan' => JabatanController::getJabatan(),
         );
         return TemplateController::templateHandler("admin/guru", $data, "Guru");
+        //dd($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getDataGuru()
     {
-        //
+        return $this->guruService->handlerGetData();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreGuruRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreGuruRequest $request)
     {
-        //
+        $query = $this->guruService->handlerInsertData($request);
+        if($query){
+            return redirect('/dataguru')->with('pesan', 'Data guru berhasil di input');
+        } else {
+            return redirect('/dataguru')->withErrors('errmsg', 'gagal tambah data');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\admin\Guru  $guru
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Guru $guru)
+    public function update(UpdateGuruRequest $request, $id)
     {
-        //
+        $query = $this->guruService->handlerUpdateData($request, $id);
+        if($query){
+            return redirect('/dataguru')->with('pesan', 'Data berhasil diubah');
+        } else {
+            return redirect('/dataguru')->withErrors('errmsg', 'Gagal update data');
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\admin\Guru  $guru
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Guru $guru)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateGuruRequest  $request
-     * @param  \App\Models\admin\Guru  $guru
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateGuruRequest $request, Guru $guru)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\admin\Guru  $guru
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Guru $guru)
-    {
-        //
+        $query = $this->guruService->handlerDelete($id);
+        if($query){
+            return redirect('/dataguru')->with('pesan', 'Data berhasil dihapus');
+        } else {
+            return redirect('/dataguru')->withErrors('errmsg', 'Gagal hapus data');
+        }
     }
 }
