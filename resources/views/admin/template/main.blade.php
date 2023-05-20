@@ -92,10 +92,9 @@
               <a href="#" class="d-block">{{ auth()->guard('operator')->user()->nama }}</a>
             </div>
             <div class="col-md-12">
-              <span class="right badge badge-danger">Admin</span>
+              <span class="right badge badge-danger">Operator</span>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -183,6 +182,12 @@
               <p>Kepala Sekolah</p>
             </a>
           </li>
+            <li class="nav-item">
+                <a href="/operator" class="nav-link {{ $judul == "Operator" ? 'active': "" }}">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Operator</p>
+                </a>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

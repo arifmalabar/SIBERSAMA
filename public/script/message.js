@@ -1,5 +1,4 @@
 var btnlog = document.getElementById("btn-logout");
-var btn_del = document.querySelector(".btn_del");
 const flashdata = $('.flash-data').data('flashdata');
 const flashdata1 = $('.flash-error').data('flashdata');
 if(flashdata){

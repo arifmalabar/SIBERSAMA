@@ -7,85 +7,67 @@ use App\Models\admin\Siswa;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
 use App\Http\Controllers\Controller;
+use App\ServiceData\SiswaService;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\KelasController;
 
 class SiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    private SiswaService $siswaService;
+    private Siswa $model;
+    private $id;
+    private $kelas;
+    public function __construct()
+    {
+        $this->id = Route::current()->parameter('id');
+        $this->model = new Siswa();
+        $this->siswaService = new SiswaService($this->model, $this->id);
+        $this->kelas = new KelasController();
+    }
+
+    public function index($id)
     {
         $data = array(
-            "data_siswa" => ""
+            "data_siswa" => $this->getDataSiswa(),
+            "data_kelas" => $this->kelas->getDataKelas(),
+            "id" => $id,
         );
         return TemplateController::templateHandler("admin/siswa", $data, "Siswa");
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getDataSiswa()
     {
-        //
+        return $this->siswaService->handlerGetData();
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSiswaRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreSiswaRequest $request)
     {
-        //
+        return $request->hasValidSignature();
+        /*$query = $this->siswaService->handlerInsertData($request);
+        if ($query)
+        {
+            return redirect('/siswa/'.$this->id)->with('pesan', 'Berhasil menambah data');
+        } else {
+            return redirect('/siswa/'.$this->id)->withErrors('pesan', 'Berhasil menambah data');
+        }*/
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\admin\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Siswa $siswa)
+    public function update(UpdateSiswaRequest $request, $id, $nisn)
     {
-        //
+        $query = $this->siswaService->handlerUpdateData($request, $nisn);
+        if ($query)
+        {
+            return redirect('/siswa/'.$this->id)->with('pesan', 'Berhasil mengubah data');
+        } else {
+            return redirect('/siswa/'.$this->id)->withErrors('pesan', 'Berhasil menambah data');
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\admin\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Siswa $siswa)
+    public function destroy($id, $nisn)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSiswaRequest  $request
-     * @param  \App\Models\admin\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateSiswaRequest $request, Siswa $siswa)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\admin\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Siswa $siswa)
-    {
-        //
+        $query = $this->siswaService->handlerDeleteData($nisn);
+        if ($query)
+        {
+            return redirect('/siswa/'.$this->id)->with('pesan', 'Berhasil mengahpus data');
+        } else {
+            return redirect('/siswa/'.$this->id)->withErrors('pesan', 'gagal hapus data');
+        }
     }
 }

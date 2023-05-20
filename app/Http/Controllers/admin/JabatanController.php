@@ -26,7 +26,6 @@ class JabatanController extends Controller
     }
     public function jabatanTable()
     {
-
         return view('admin/table/table_jabatan', $data);
     }
     public static function getJabatan()

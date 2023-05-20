@@ -29,9 +29,12 @@ class GuruService
     public function handlerUpdateData(UpdateGuruRequest $request, $id)
     {
         $data = $request->validated();
-        $data['password'] = bcrypt($data['password']);
         $data['role'] = 1;
-        return $this->guruRepos->updateData($data);
+        if (empty($data['password']))
+        {
+            $data['password'] = $request->input('old_password');
+        }
+        return $this->guruRepos->updateData($data, $id);
     }
     public function handlerDelete($id)
     {

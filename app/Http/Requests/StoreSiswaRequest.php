@@ -13,7 +13,7 @@ class StoreSiswaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class StoreSiswaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nisn' => 'required',
+            'nama_siswa' => 'required',
+            'username' => 'required|unique:tb_siswa',
+            'password' => 'required',
+            'jenis_kelamin' => 'required'
         ];
     }
 }

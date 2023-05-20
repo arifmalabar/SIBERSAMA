@@ -13,7 +13,7 @@ class UpdateSiswaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateSiswaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nisn' => 'required',
+            'nama_siswa' => 'required',
+            'username' => 'required',
+            'kode_kelas' => 'required',
+            'password' => '',
+            'jenis_kelamin' => 'required'
         ];
     }
 }

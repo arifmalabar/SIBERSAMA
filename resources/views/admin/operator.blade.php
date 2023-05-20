@@ -1,7 +1,6 @@
-@extends('admin/template/main')
+@extends('admin.template.main')
 @section('content')
-    @include('admin/content_dashboard/header')
-    <!-- Main content -->
+    @include('admin.content_dashboard.header')
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -19,12 +18,12 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Jurusan</h3>
+                            <h3 class="card-title">Data Operator</h3>
                             <div class="card-tools">
-                                <button class="btn btn-sm btn-success" data-target="#modal-jurusan-tambah" data-toggle="modal">
-                                    <i class="fa fa-plus"></i> Tambah Data
+                                <button class="btn btn-sm btn-success" data-target="#modal-operator-tambah" data-toggle="modal">
+                                    <i class="fa fa-user-plus"></i> Tambah Operator
                                 </button>
-                                @include("admin.modal.modal_jurusan")
+                                @include("admin.modal.modal_operator_tambah")
                             </div>
                         </div>
                         <div class="card-body">
@@ -32,26 +31,29 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Jurusan</th>
+                                    <th>NIP</th>
+                                    <th>Nama Operator</th>
+                                    <th>Username</th>
                                     <th>Opsi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @php $no = 1; @endphp
-                                    @foreach($data_jurusan as $jurusan)
-
+                                @php $no = 1; @endphp
+                                @foreach($data_operator as $operator)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $jurusan->nama_jurusan }}</td>
+                                        <td>{{ $operator->NIP }}</td>
+                                        <td>{{ $operator->nama }}</td>
+                                        <td>{{ $operator->username }}</td>
                                         <td>
                                             <center>
-                                                <a class="btn btn-sm btn-outline-danger btn_del" href="/hapusjurusan/{{ $jurusan->kode_jurusan }}" ><i class="fa fa-trash"></i></a>&nbsp;
-                                                <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#modal-jurusan-edit{{ $jurusan->kode_jurusan }}"><i class="fa fa-edit"></i></button>
+                                                <a class="btn btn-sm btn-outline-danger btn_del" href="/hapusoperator/{{ $operator->NIP }}" ><i class="fa fa-trash"></i></a>&nbsp;
+                                                <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#modal-operator-edit{{ $operator->NIP }}"><i class="fa fa-edit"></i></button>
                                             </center>
                                         </td>
-                                        @include('admin.modal.modal_edit_jurusan')
                                     </tr>
-                                    @endforeach
+                                    @include('admin.modal.modal_operator_edit')
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -61,5 +63,4 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-
 @endsection

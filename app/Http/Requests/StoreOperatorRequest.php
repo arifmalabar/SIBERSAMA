@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateOperatorRequest extends FormRequest
+class StoreOperatorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,8 @@ class UpdateOperatorRequest extends FormRequest
         return [
             'NIP' => 'required',
             'nama' => 'required',
-            'username' => 'required',
-            'password' => '',
+            'username' => 'required|unique:tb_operator',
+            'password' => 'required'
         ];
     }
 }

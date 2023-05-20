@@ -6,15 +6,15 @@ use App\Models\admin\Siswa;
 
 class SiswaRepos extends BaseRepos
 {
-    private $nisn;
-    public function __construct(Siswa $siswa, $nisn)
+    private $kode_kelas;
+    public function __construct(Siswa $siswa, $kode_kelas)
     {
         $this->model = $siswa;
-        $this->nisn = $nisn;
+        $this->kode_kelas = $kode_kelas;
     }
     //override
     public function getAllData()
     {
-        return parent::getAllData()->find($this->nisn);
+        return parent::getAllData()->where('kode_kelas', $this->kode_kelas);
     }
 }

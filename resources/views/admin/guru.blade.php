@@ -6,6 +6,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+            <div class="col-lg-12">
                 <div class="card" style="border-radius: 20px">
                     <div class="card-body">
                         <div class="row">
@@ -34,6 +45,7 @@
                 <div class="row">
                     @foreach($data_guru as $guru)
                         @include('admin.content_dashboard.account_guru')
+			            @include('admin.modal.modal_edit_guru')
                     @endforeach
                 </div>
             </div>

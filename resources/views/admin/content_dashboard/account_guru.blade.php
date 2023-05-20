@@ -21,10 +21,10 @@
         </div>
         <div class="card-footer">
             <div class="text-right">
-                <a href="#" class="btn btn-sm btn-outline-warning">
+                <a href="#" class="btn btn-sm btn-outline-warning"  data-target="#modal-guru-edit{{ $guru->NIP }}" data-toggle="modal">
                     <i class="fas fa-edit"></i> Edit Akun
                 </a>
-                <a href="#" class="btn btn-sm btn-outline-danger">
+                <a href="/hapusdataguru/{{ $guru->NIP }}" class="btn btn-sm btn-outline-danger btn_del">
                     <i class="fas fa-trash"></i> Hapus Akun
                 </a>
             </div>

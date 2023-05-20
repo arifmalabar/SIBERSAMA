@@ -23,6 +23,7 @@ use App\Http\Controllers\guru\EntryPelanggaran;
 use App\Http\Controllers\guru\RemisiPelanggaran;
 use App\Http\Controllers\guru\DataJenisPereferensi;
 use App\Http\Controllers\guru\DataKriteria;
+use App\Http\Controllers\admin\OperatorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,8 +59,8 @@ Route::group(['middleware' => ['is_operator']], function () {
     Route::controller(SiswaController::class)->group(function (){
         Route::get('/siswa/{id}', 'index');
         Route::post('/tambahsiswa/{id}', 'store');
-        Route::post('/editsiswa/{id}', 'update');
-        Route::get('/hapussiswa/{id}', 'destroy');
+        Route::post('/editsiswa/{id}/{nisn}', 'update');
+        Route::get('/hapussiswa/{id}/{nisn}', 'destroy');
     });
     //guru
     Route::controller(GuruController::class)->group(function (){
@@ -74,6 +75,13 @@ Route::group(['middleware' => ['is_operator']], function () {
         Route::post('/tambahkepalasekolah', 'store');
         Route::post('/editkepalasekolah/{id}', 'update');
         Route::get('/hapuskepalasekolah/{id}', 'destroy');
+    });
+    //operator
+    Route::controller(OperatorController::class)->group(function (){
+        Route::get('/operator/', 'index');
+        Route::post('/tambahoperator', 'store');
+        Route::post('/updateoperator/{id}', 'update');
+        Route::get('/hapusoperator/{id}', 'destroy');
     });
 });
 Route::group(['middleware' => ['is_guru']], function(){
