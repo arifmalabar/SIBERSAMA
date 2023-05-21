@@ -21,12 +21,13 @@ class Dashboard extends Controller
         $this->jurusan = new JurusanController();
         $this->kelas = new KelasController();
         $this->jabatan = new JabatanController();
+        $this->pangkat = new KepangkatanController();
     }
 
     public function main()
     {
         $data = array(
-            'kepangkatan' => KepangkatanController::getPangkat(),
+            'kepangkatan' => $this->pangkat->getPangkat(),
             'jabatan' => $this->jabatan->getJabatan(),
         );
         return TemplateController::templateHandler("admin/main", $data, "Dashboard");

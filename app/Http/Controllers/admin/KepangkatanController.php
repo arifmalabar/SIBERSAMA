@@ -7,19 +7,20 @@ use App\Http\Requests\StoreKepangkatanRequest;
 use App\Http\Requests\UpdateKepangkatanRequest;
 use App\Http\Controllers\IdBuilder;
 use App\Http\Controllers\Controller;
+use App\ServiceData\PangkatService;
+use Illuminate\Support\Str;
 
 class KepangkatanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private PangkatService $pangkatService;
+
     private $data = array();
     function __construct()
     {
+        $model = new Kepangkatan();
+        $this->pangkatService = new PangkatService($model);
         $data = array(
-            'data_pangkat' => getPangkat(),
+            'data_pangkat' => $this->getPangkat(),
             'no' => 1
         );
     }
@@ -27,38 +28,32 @@ class KepangkatanController extends Controller
     {
         return view('admin/table/table_pangkat', $data);
     }
-    public static function getPangkat() 
+    public function getPangkat()
     {
-        return Kepangkatan::all();
+       return $this->pangkatService->handlerGetData();
     }
-    
     public function store(StoreKepangkatanRequest $request)
     {
-        $request->validate([
-            "nama_pangkat" => "required"
-        ]);
-        Kepangkatan::create([
-            "kode_pangkat" => IdBuilder::getId(Kepangkatan::class, "kode_pangkat","PK"),
-            "pangkat" => $request->nama_pangkat
-        ]);
-        return view('admin/table/table_pangkat', $data);
+        $query = $this->pangkatService->handlerInsertData($request);
+        if ($query)
+        {
+            return redirect('/admin')->with('pesan', 'berhasil menambah data');
+        }
     }
-
     public function update(UpdateKepangkatanRequest $request, $id)
     {
-        $request->validate([
-            "nama_pangkat" => "required"
-        ]);
-        $kepangkatan = Kepangkatan::find($id);
-        $kepangkatan->pangkat = $request->nama_pangkat;
-        $kepangkatan->save();
-        return view('admin/table/table_pangkat', $data);
+        $query = $this->pangkatService->handlerUpdateData($request, $id);
+        if ($query)
+        {
+            return redirect('/admin')->with('pesan', 'berhasil mengubah data');
+        }
     }
-
     public function destroy(Kepangkatan $kepangkatan)
     {
-        $kepangkatan = Kepangkatan::find($id);
-        $kepangkatan->delete();
-        return view('admin/table/table_pangkat', $data);
+        $query = $this->pangkatService->handlerDeleteData($id);
+        if ($query)
+        {
+            return redirect('/admin')->with('pesan', 'berhasil menghapus data');
+        }
     }
 }

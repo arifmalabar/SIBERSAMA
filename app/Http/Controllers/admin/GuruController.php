@@ -13,6 +13,8 @@ use App\ServiceData\GuruService;
 class GuruController extends Controller
 {
     private GuruService $guruService;
+    private KepangkatanController $kepangkatanController;
+    private JabatanController $jabatanController;
 
     /**
      * @param GuruService $guruService
@@ -21,14 +23,16 @@ class GuruController extends Controller
     {
         $model = new Guru();
         $this->guruService = new GuruService($model);
+        $this->jabatanController = new JabatanController();
+        $this->kepangkatanController = new KepangkatanController();
     }
 
     public function index()
     {
         $data = array(
             'data_guru' => $this->getDataGuru(),
-            'data_pangkat' => KepangkatanController::getPangkat(),
-            'data_jabatan' => JabatanController::getJabatan(),
+            'data_pangkat' => $this->kepangkatanController->getPangkat(),
+            'data_jabatan' => $this->jabatanController->getJabatan(),
         );
         return TemplateController::templateHandler("admin/guru", $data, "Guru");
         //dd($data);
