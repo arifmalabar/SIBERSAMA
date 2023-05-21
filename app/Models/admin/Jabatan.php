@@ -11,4 +11,6 @@ class Jabatan extends Model
     protected $table = "tb_jabatan";
     public $primaryKey = "kd_jabatan";
     public $incrementing = false;
+    protected $fillable = ['kd_jabatan', 'nama_jabatan'];
+    public $timestamps = false;
 }

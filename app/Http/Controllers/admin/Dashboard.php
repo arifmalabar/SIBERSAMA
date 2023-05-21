@@ -11,7 +11,7 @@ use App\Http\Controllers\admin\JabatanController;
 
 class Dashboard extends Controller
 {
-    private $jurusan, $kelas;
+    private $jurusan, $kelas, $jabatan, $pangkat;
 
     /**
      * @param $jurusan
@@ -20,13 +20,14 @@ class Dashboard extends Controller
     {
         $this->jurusan = new JurusanController();
         $this->kelas = new KelasController();
+        $this->jabatan = new JabatanController();
     }
 
     public function main()
     {
         $data = array(
             'kepangkatan' => KepangkatanController::getPangkat(),
-            'jabatan' => JabatanController::getjabatan(),
+            'jabatan' => $this->jabatan->getJabatan(),
         );
         return TemplateController::templateHandler("admin/main", $data, "Dashboard");
     }

@@ -6,14 +6,15 @@ use App\Http\Requests\UpdateGuruRequest;
 use App\Repos\GuruRepos;
 class GuruService
 {
-    private $guruRepos;
+    protected GuruRepos $guruRepos;
+    public $role = 1; //inisialisasi guru awal
 
     /**
      * @param $guruRepos
      */
     public function __construct($guru)
     {
-        $this->guruRepos = new GuruRepos($guru);
+        $this->guruRepos = new GuruRepos($guru, $this->role);
     }
     public function handlerGetData()
     {
@@ -23,13 +24,13 @@ class GuruService
     {
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
-        $data['role'] = 1;
+        $data['role'] = $this->role;
         return $this->guruRepos->simpanData($data);
     }
     public function handlerUpdateData(UpdateGuruRequest $request, $id)
     {
         $data = $request->validated();
-        $data['role'] = 1;
+        $data['role'] = $this->role;
         if (empty($data['password']))
         {
             $data['password'] = $request->input('old_password');

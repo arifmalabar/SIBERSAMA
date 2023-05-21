@@ -7,15 +7,16 @@ use App\Models\admin\Jurusan;
 
 class GuruRepos extends BaseRepos
 {
-
-    public function __construct(Guru $jurusan)
+    private $role;
+    public function __construct(Guru $jurusan, $role)
     {
         $this->model = $jurusan;
+        $this->role = $role;
     }
     //override
     public function getAllData()
     {
-        return parent::getAllData()->where('role', 1);
+        return parent::getAllData()->where('role', $this->role);
     }
 
 }

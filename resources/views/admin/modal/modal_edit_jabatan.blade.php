@@ -1,14 +1,14 @@
-<div class="modal fade" id="modal-jabatan">
+<div class="modal fade" id="modal-edit-jabatan{{ $key->kd_jabatan }}">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-success">
-                <h4 class="modal-title">Tambah Jabatan</h4>
+            <div class="modal-header bg-warning">
+                <h4 class="modal-title">Edit Jabatan</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="/tambahjabatan">
+                <form role="form" method="post" action="/updatejabatan/{{ $key->kd_jabatan }}">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
@@ -21,14 +21,14 @@
                                         <i class="fa fa-user"></i>
                                     </span>
                                     </div>
-                                    <input type="text" value="" placeholder="Masukan Nama Jabatan" name="nama_jabatan" class="form-control">
+                                    <input type="text" value="{{ $key->nama_jabatan }}" placeholder="Masukan Nama Jabatan" name="nama_jabatan" class="form-control">
                                 </div>
                             </div>
                         </div>
                     </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="submit" class="btn btn-outline-success btn-sm"><i class="fa fa-plus"></i> Tambah Jabatan</button>
+                <button type="submit" class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i> Edit Jabatan</button>
             </div>
             </form>
         </div>

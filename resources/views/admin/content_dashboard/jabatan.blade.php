@@ -29,10 +29,11 @@
                     <td>{{ $key->kd_jabatan }}</td>
                     <td>{{ $key->nama_jabatan }}</td>
                     <td>
-                        <a class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>&nbsp;
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-jabatan"><i class="fa fa-edit"></i></button>
+                        <a class="btn btn-sm btn-danger" href="/hapusjabatan/{{$key->kd_jabatan}}"><i class="fa fa-trash"></i></a>&nbsp;
+                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-jabatan{{ $key->kd_jabatan }}"><i class="fa fa-edit"></i></button>
                     </td>
                 </tr>
+                @include('admin.modal.modal_edit_jabatan')
                 @endforeach
             </tbody>
         </table>

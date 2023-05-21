@@ -40,7 +40,7 @@ class OperatorService
     }
     public function handlerDelete($id)
     {
-        dd($id);
-        //return $this->operatorRepos->hapusData($id);
+        //dd($id);
+        return $this->operatorRepos->hapusData($id);
     }
 }

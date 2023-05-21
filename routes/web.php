@@ -24,6 +24,7 @@ use App\Http\Controllers\guru\RemisiPelanggaran;
 use App\Http\Controllers\guru\DataJenisPereferensi;
 use App\Http\Controllers\guru\DataKriteria;
 use App\Http\Controllers\admin\OperatorController;
+use App\Http\Controllers\admin\JabatanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -82,6 +83,12 @@ Route::group(['middleware' => ['is_operator']], function () {
         Route::post('/tambahoperator', 'store');
         Route::post('/updateoperator/{id}', 'update');
         Route::get('/hapusoperator/{id}', 'destroy');
+    });
+    //jabatan
+    Route::controller(JabatanController::class)->group(function (){
+        Route::post('/tambahjabatan', 'store');
+        Route::post('/updatejabatan/{id}', 'update');
+        Route::get('/hapusjabatan/{id}', 'destroy');
     });
 });
 Route::group(['middleware' => ['is_guru']], function(){

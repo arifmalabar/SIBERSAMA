@@ -8,19 +8,18 @@ use App\Http\Requests\UpdateJabatanRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\IdBuilder;
 use Illuminate\Support\Str;
+use App\ServiceData\JabatanService;
 
 class JabatanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     private $data = array();
+    private Jabatan $jabatan;
+    private JabatanService $jabatanService;
     function __construct()
     {
+        $this->jabatan = new Jabatan();
+        $this->jabatanService = new JabatanService($this->jabatan);
         $data = array(
-            'data_pangkat' => getPangkat(),
             'no' => 1
         );
     }
@@ -28,37 +27,30 @@ class JabatanController extends Controller
     {
         return view('admin/table/table_jabatan', $data);
     }
-    public static function getJabatan()
+    public function getJabatan()
     {
-        return Jabatan::all();
+        return $this->jabatanService->handlerGetData();
     }
     public function store(StoreJabatanRequest $request)
     {
-        $request->validate([
-            'nama_jabatan' => 'required'
-        ]);
-        Jabatan::create([
-            "kode_jabatan" => IdBuilder::getId(Kepangkatan::class, "kd_jabatan","PK"),
-            "nama_jabatan" => $request->nama_jabatan
-        ]);
-        return view('admin/table/table_jabatan', $data);
+        $query = $this->jabatanService->handlerInsertData($request);
+        if ($query){
+            return redirect('admin/')->with('pesan', 'berhasil menambah data jabatan');
+        }
     }
-
     public function update(UpdateJabatanRequest $request, $id)
     {
-        $request->validate([
-            'nama_jabatan' => 'required'
-        ]);
-        $jabatan = Jabatan::find($id);
-        $pegawai->nama_jabatan = $request->nama_jabatan;
-        $jabatan->save();
-        return view('admin/table/table_jabatan', $data);
+        $query = $this->jabatanService->handlerUpdateData($request, $id);
+        if ($query){
+            return redirect('admin/')->with('pesan', 'berhasil mengubah data jabatan');
+        }
     }
 
     public function destroy($id)
     {
-        $pegawai = Pegawai::find($id);
-        $pegawai->delete();
-        return view('admin/table/table_jabatan', $data);
+        $query = $this->jabatanService->handlerDeleteData($id);
+        if ($query){
+            return redirect('admin/')->with('pesan', 'berhasil menghapus data jabatan');
+        }
     }
 }
