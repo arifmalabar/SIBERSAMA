@@ -6,6 +6,7 @@
         <div class="container-fluid">
             @include('admin/content_dashboard/count')
             <div class="row">
+                @include('template_error.message_request_error')
                 @include('admin/content_dashboard/biodata_sklh')
                 @include('admin/content_dashboard/last_access')
                 @include('admin/content_dashboard/operator')

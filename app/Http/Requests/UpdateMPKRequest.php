@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateKepangkatanRequest extends FormRequest
+class UpdateMPKRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateKepangkatanRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,7 +24,7 @@ class UpdateKepangkatanRequest extends FormRequest
     public function rules()
     {
         return [
-            'pangkat' => 'required|unique:tb_kepangkatan'
+            //
         ];
     }
 }

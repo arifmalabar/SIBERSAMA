@@ -21,10 +21,11 @@ use App\Http\Controllers\kepala_sekolah\StatistikPelanggar;
 use App\Http\Controllers\guru\Laporan;
 use App\Http\Controllers\guru\EntryPelanggaran;
 use App\Http\Controllers\guru\RemisiPelanggaran;
-use App\Http\Controllers\guru\DataJenisPereferensi;
+use App\Http\Controllers\guru\DataJenisKriteria;
 use App\Http\Controllers\guru\DataKriteria;
 use App\Http\Controllers\admin\OperatorController;
 use App\Http\Controllers\admin\JabatanController;
+use App\Http\Controllers\guru\SemesterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,11 +91,22 @@ Route::group(['middleware' => ['is_operator']], function () {
         Route::post('/updatejabatan/{id}', 'update');
         Route::get('/hapusjabatan/{id}', 'destroy');
     });
+    //kepangkatan
+    Route::controller(KepangkatanController::class)->group(function (){
+        Route::post('/tambahpangkat', 'store');
+        Route::post('/editpangkat/{id}', 'update');
+        Route::get('/hapuspangkat/{id}', 'destroy');
+    });
 });
 Route::group(['middleware' => ['is_guru']], function(){
+    Route::controller(SemesterController::class)->group(function (){
+        Route::post('/tambahsemester', 'store');
+        Route::post('/editsemester/{id}', 'update');
+        Route::get('/hapussemester/{id}', 'destroy');
+    });
     Route::get('/guru', [DashboardGuru::class, 'index']);
     Route::get('/pereferensi', [\App\Http\Controllers\guru\DataPereferensi::class, 'index']);
-    Route::get('/jenis_kriteria', [DataKriteria::class, 'jk']);
+    Route::get('/jenis_kriteria', [DataJenisKriteria::class, 'index']);
     Route::get('/remisi_pelanggaran', [RemisiPelanggaran::class, 'index']);
     Route::get('/entry_pelanggaran', [EntryPelanggaran::class, 'index']);
     Route::get('/laporan_pelanggaran', [Laporan::class, 'index']);

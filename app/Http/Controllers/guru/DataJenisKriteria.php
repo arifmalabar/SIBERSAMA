@@ -6,11 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Http\Request;
 
-class DataKriteria extends Controller
+class DataJenisKriteria extends DataKriteria
 {
     public function index()
     {
-        return TemplateController::templateHandler("guru.kriteria", array(), "Data Kriteria");
+        return TemplateController::templateHandler("guru.jenis_kriteria", array(), "Data Jenis Kriteria");
     }
-
 }

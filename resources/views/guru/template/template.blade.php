@@ -113,35 +113,68 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/pereferensi" class="nav-link {{ $judul == "Jurusan" ? 'active' : '' }}">
+                        <a href="/pereferensi" class="nav-link {{ $judul == "Data Pereferensi" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-school"></i>
                             <p>Data Pereferensi</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/kriteria" class="nav-link {{ $judul == "Kelas" ? 'active' : '' }}">
+                        <a href="/kriteria" class="nav-link {{ $judul == "Data Kriteria" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-store"></i>
                             <p>Data Kriteria</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/jenis_kriteria" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
+                        <a href="/jenis_kriteria" class="nav-link {{ $judul == "Data Jenis Kriteria" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Jenis Kriteria</p>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a href="#" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Siswa</p>
+                            <i class="right fas fa-angle-left"></i>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @foreach($data_kelas_ul as $kelas)
+                                <li class="nav-item">
+                                    <a href="/siswa/{{$kelas->kode_kelas}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ $kelas->nama_kelas }}</p>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
                     <li class="nav-header">Pelanggaran</li>
                     <li class="nav-item">
-                        <a href="/entry_pelanggaran" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
+                        <a href="#" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Entry Pelanggaran</p>
+                            <i class="right fas fa-angle-left"></i>
                         </a>
+                        <ul class="nav nav-treeview">
+                            @foreach($data_kelas_ul as $kelas)
+                                <li class="nav-item">
+                                    <a href="/siswa/{{$kelas->kode_kelas}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ $kelas->nama_kelas }}</p>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="/remisi_pelanggaran" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Remisi Pelanggaran</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="nav-icon fa fa-user-check"></i>
+                            <p>MPK</p>
                         </a>
                     </li>
                     <!--<li class="nav-item menu-open">
@@ -173,7 +206,6 @@
                         </li>
                       </ul>
                     </li>-->
-                    <!--
                     <li class="nav-header">Laporan</li>
                     <li class="nav-item">
                         <a href="" class="nav-link">
@@ -192,7 +224,7 @@
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>Penentuan Siswa Bermasalah</p>
                         </a>
-                    </li>-->
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -273,7 +305,7 @@
             "searching": true,
             "ordering": true,
             "info": true,
-            "autoWidth": false,
+            "autoWidth": true,
             "responsive": true,
         });
         $("#example3").DataTable({

@@ -10,6 +10,6 @@ class DataPereferensi extends Controller
 {
     public function index()
     {
-        return TemplateController::templateHandler("guru.pereferensi", array(), "Data Perefernsi");
+        return TemplateController::templateHandler("guru.pereferensi", array(), "Data Pereferensi");
     }
 }

@@ -124,7 +124,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
+            <a href="#" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>Siswa</p>
                 <i class="right fas fa-angle-left"></i>

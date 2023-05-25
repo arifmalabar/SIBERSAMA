@@ -6,9 +6,10 @@
                 Data Semester
             </h3>
             <div class="card-tools">
-                <button class="btn btn-sm btn-success">
+                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-semester">
                     <i class="fa fa-plus"></i>Tambah Data Semester
                 </button>
+                @include('guru.modal.modal_tambah_semester')
             </div>
         </div>
         <div class="card-body">
@@ -21,11 +22,20 @@
                 </tr>
                 </thead>
                 <tbody>
+                @php $no = 1 @endphp
+                @foreach($data_pangkat as $pk)
                 <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td></td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ "SEMESTER ".$pk->semester }}</td>
+                    <td>
+                        <center>
+                            <a class="btn btn-sm btn-outline-danger btn_del" href="/hapussemester/{{ $pk->semester }}" ><i class="fa fa-trash"></i></a>&nbsp;
+                            <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#modal-semester-edit{{ $pk->semester }}"><i class="fa fa-edit"></i></button>
+                        </center>
+                    </td>
+                    @include('guru.modal.modal_edit_semester')
                 </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

@@ -4,9 +4,12 @@ namespace App\ServiceData;
 
 use App\DataInterface\HandlerDataInterface;
 use App\DataInterface\Request;
+use App\Http\Requests\StoreKepangkatanRequest;
 use App\Http\Requests\StorePangkatRequest;
+use App\Http\Requests\UpdateKepangkatanRequest;
 use App\Http\Requests\UpdatePangkatRequest;
 use App\Repos\PangkatRepos;
+use Illuminate\Support\Str;
 
 class PangkatService
 {
@@ -19,12 +22,14 @@ class PangkatService
     {
         return $this->pangkatRepos->getAllData();
     }
-    public function handlerInsertData(StorePangkatRequest $request)
+    public function handlerInsertData(StoreKepangkatanRequest $request)
     {
+        $kd_pangkat = Str::random(8);
         $data = $request->validated();
+        $data['kode_pangkat'] = $kd_pangkat;
         return $this->pangkatRepos->simpanData($data);
     }
-    public function handlerUpdateData(UpdatePangkatRequest $request, $id)
+    public function handlerUpdateData(UpdateKepangkatanRequest $request, $id)
     {
         $data = $request->validated();
         return $this->pangkatRepos->updateData($data, $id);

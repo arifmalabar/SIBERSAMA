@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Repos;
+
+class SemesterRepos extends BaseRepos
+{
+    public function __construct($model)
+    {
+        $this->model = $model;
+    }
+}

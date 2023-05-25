@@ -48,7 +48,7 @@ class KepangkatanController extends Controller
             return redirect('/admin')->with('pesan', 'berhasil mengubah data');
         }
     }
-    public function destroy(Kepangkatan $kepangkatan)
+    public function destroy($id)
     {
         $query = $this->pangkatService->handlerDeleteData($id);
         if ($query)
