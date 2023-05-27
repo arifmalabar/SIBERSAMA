@@ -5,12 +5,12 @@ namespace App\Models\guru;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MPK extends Model
+class Pereferensi extends Model
 {
     use HasFactory;
-    protected $table = "tb_mpkosis";
-    protected $primaryKey = "kode_anggota";
-    protected $fillable = ['kode_anggota', 'NISN', 'tahun_periode_aktif', 'tahun_periode_non'];
+    protected $table = "tb_pereferensi";
+    protected $primaryKey = "kode_pereferensi";
+    protected $fillable = ['keterangan', 'bobot_nilai'];
     public $incrementing = false;
     public $timestamps = false;
 }

@@ -10,10 +10,10 @@
                         <div class="card-header">
                             <h3 class="card-title">Data Jenis Kriteria</h3>
                             <div class="card-tools">
-                                <button class="btn btn-sm btn-success" data-target="#modal-kriteria-tambah" data-toggle="modal">
+                                <button class="btn btn-sm btn-success" data-target="#modal-jurusan-tambah" data-toggle="modal">
                                     <i class="fa fa-plus"></i> Tambah Data
                                 </button>
-                                @include("guru.modal.modal_tambah_kriteria")
+                                @include("guru.modal.modal_tambah_jeniskriteria")
                             </div>
                         </div>
                         <div class="card-body">
@@ -21,25 +21,22 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kriteria</th>
+                                    <th>Nama Jurusan</th>
                                     <th>Opsi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @php $no = 1; @endphp
-                                @foreach($data_kriteria as $k)
                                 <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $k->nama_kriteria }}</td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <center>
-                                            <a class="btn btn-sm btn-outline-danger" href="/hapuskriteria/{{ $k->kode_kriteria }}" ><i class="fa fa-trash"></i></a>&nbsp;
-                                            <button class="btn btn-sm btn-outline-warning" data-target="#modal-kriteria-edit{{ $k->kode_kriteria }}" data-toggle="modal"><i class="fa fa-edit"></i></button>
+                                            <a class="btn btn-sm btn-outline-danger btn_del" href="/hapusjurusan/" ><i class="fa fa-trash"></i></a>&nbsp;
+                                            <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#modal-jurusan-edit"><i class="fa fa-edit"></i></button>
                                         </center>
                                     </td>
-                                    @include('guru.modal.modal_update_kriteria')
+                                    @include('guru.modal.modal_update_jeniskriteria')
                                 </tr>
-                                @endforeach
                                 </tbody>
                             </table>
                         </div>

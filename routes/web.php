@@ -26,6 +26,8 @@ use App\Http\Controllers\guru\DataKriteria;
 use App\Http\Controllers\admin\OperatorController;
 use App\Http\Controllers\admin\JabatanController;
 use App\Http\Controllers\guru\SemesterController;
+use App\Http\Controllers\guru\DataPereferensi;
+use App\Http\Controllers\guru\MPKController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,21 +100,48 @@ Route::group(['middleware' => ['is_operator']], function () {
         Route::get('/hapuspangkat/{id}', 'destroy');
     });
 });
+//guru
 Route::group(['middleware' => ['is_guru']], function(){
+    //semester
     Route::controller(SemesterController::class)->group(function (){
         Route::post('/tambahsemester', 'store');
         Route::post('/editsemester/{id}', 'update');
         Route::get('/hapussemester/{id}', 'destroy');
     });
+    //jenis_kriteria
+    Route::controller(DataJenisKriteria::class)->group(function (){
+        Route::get('/jenis_kriteria', 'index');
+        Route::post('/tambahjeniskriteria', 'store');
+        Route::post('/editjeniskriteria/{id}', 'update');
+        Route::get('/hapusjeniskriteria/{id}', 'destroy');
+    });
+    //kriteria
+    Route::controller(DataKriteria::class)->group(function (){
+        Route::get('/kriteria', 'index');
+        Route::post('/tambahkriteria', 'store');
+        Route::post('/editkriteria/{id}', 'update');
+        Route::get('/hapuskriteria/{id}', 'destroy');
+    });
+    //jeniskriteria
+    Route::controller(DataPereferensi::class)->group(function (){
+        Route::get('/pereferensi', 'index');
+        Route::post('/tambahpereferensi', 'store');
+        Route::post('/editpereferensi/{id}', 'update');
+        Route::get('/hapuspereferensi/{id}', 'destroy');
+    });
+    //mpk
+    Route::controller(MPKController::class)->group(function (){
+        Route::get('/data_mpk', 'index');
+        Route::post('/tambahmpk', 'store');
+        Route::post('/editmpk/{id}', 'update');
+        Route::get('/hapusmpk/{id}', 'destroy');
+    });
     Route::get('/guru', [DashboardGuru::class, 'index']);
-    Route::get('/pereferensi', [\App\Http\Controllers\guru\DataPereferensi::class, 'index']);
-    Route::get('/jenis_kriteria', [DataJenisKriteria::class, 'index']);
     Route::get('/remisi_pelanggaran', [RemisiPelanggaran::class, 'index']);
     Route::get('/entry_pelanggaran', [EntryPelanggaran::class, 'index']);
     Route::get('/laporan_pelanggaran', [Laporan::class, 'index']);
     Route::get('/laporan_perbandingan', [Laporan::class, 'perbandingan']);
     Route::get('/remisi', [RemisiPelanggaran::class, 'index']);
-    Route::get('/kriteria', [DataKriteria::class, 'index']);
 });
 Route::group(['middleware' => ['is_siswa']], function(){
     Route::get('/siswa', [DashboardSiswa::class, 'index']);

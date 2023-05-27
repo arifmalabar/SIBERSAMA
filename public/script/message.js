@@ -1,4 +1,5 @@
 var btnlog = document.getElementById("btn-logout");
+var btndel = document.querySelector(".btn_del");
 const flashdata = $('.flash-data').data('flashdata');
 const flashdata1 = $('.flash-error').data('flashdata');
 if(flashdata){
@@ -24,7 +25,11 @@ function pesanGagal(pesan, header, ikon)
         confirmButtonText: 'Oke'
     });
 }
-$('.btn_del').on('click', function (e) {
+btndel.addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log(btndel.getAttribute("href"));
+})
+/*$('.btn_del').on('click', function (e) {
     e.preventDefault();
     swal.fire({
         title: 'Mengapus data?',
@@ -45,7 +50,7 @@ $('.btn_del').on('click', function (e) {
             )
         }
     })
-})
+})*/
 /*btn_del.addEventListener('click', function (e) {
 
 })*/
