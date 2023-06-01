@@ -12,7 +12,7 @@
         <span class="info-box-icon bg-danger"><i class="fas fa-paperclip"></i></span>
         <div class="info-box-content">
             <span class="info-box-text">Jumlah Data Kriteria</span>
-            <span class="info-box-number">1,410</span>
+            <span class="info-box-number">{{ $kriteria }}</span>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <span class="info-box-icon bg-warning"><i class="far fa-envelope"></i></span>
         <div class="info-box-content">
             <span class="info-box-text">Jumlah Jenis Kriteria</span>
-            <span class="info-box-number">1,410</span>
+            <span class="info-box-number">{{ $jenis_kriteria }}</span>
         </div>
     </div>
 </div>
@@ -30,7 +30,7 @@
         <span class="info-box-icon bg-success"><i class="far fa-user"></i></span>
         <div class="info-box-content">
             <span class="info-box-text">Jumlah Akun MPK</span>
-            <span class="info-box-number">1,410</span>
+            <span class="info-box-number">{{ $akunMPK }}</span>
         </div>
     </div>
 </div>
