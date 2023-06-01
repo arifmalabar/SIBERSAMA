@@ -1,8 +1,8 @@
-<div class="modal fade" id="modal-mpk-tambah">
+<div class="modal fade" id="modal-entry-pelanggaran">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-success">
-                <h4 class="modal-title">Tambah MPK</h4>
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title">Entry Pelanggaran Siswa</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,17 +14,17 @@
                         <div class="col-md-12">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Pilih Siswa</label>
+                                <label>Pilih Semester</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fa fa-users"></i>
                                     </span>
                                     </div>
-                                    <select class="form-control select2bs4 select2-hidden-accessible" name="NISN" id="nisn">
-                                        <option value="">Pilih Data</option>
-                                        @foreach($data_siswa as $sis)
-                                            <option value="{{ $sis->NISN }}">{{ $sis->nama_siswa }}</option>
+                                    <select class="form-control select2bs4 select2-hidden-accessible" name="semester" id="semester">
+                                        <option value="">Pilih Semester</option>
+                                        @foreach($data_semester as $sm)
+                                            <option value="{{ $sm->semester }}">Semester {{ $sm->semester }}</option>
                                         @endforeach
                                     </select>
                                 </div>

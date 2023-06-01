@@ -17,4 +17,8 @@ class Kriteria extends Model
     {
         return $this->belongsTo(JenisKriteria::class, 'kode_kriteria', 'kode_kriteria');
     }
+    public function jenisk()
+    {
+        return $this->hasMany(JenisKriteria::class, 'kode_kriteria', 'kode_kriteria');
+    }
 }

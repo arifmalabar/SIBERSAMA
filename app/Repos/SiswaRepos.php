@@ -17,4 +17,8 @@ class SiswaRepos extends BaseRepos
     {
         return parent::getAllData()->where('kode_kelas', $this->kode_kelas);
     }
+    public function getAllDataWithoutID()
+    {
+        return parent::getAllData();
+    }
 }

@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="/data_mpk" class="nav-link" class="nav-link {{ $judul == "Data MPK" ? 'active' : '' }}">
                             <i class="nav-icon fa fa-user-check"></i>
                             <p>MPK</p>
                         </a>

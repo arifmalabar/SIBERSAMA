@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMPKRequest extends FormRequest
+class StorePelanggaranRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class UpdateMPKRequest extends FormRequest
     public function rules()
     {
         return [
-            'tahun_periode_aktif' => 'required',
-            'tahun_periode_non' => 'required'
+            'NISN' => 'required',
+            'kode_jenis_kriteria' => 'required',
+            'semester' => 'required',
         ];
     }
 }

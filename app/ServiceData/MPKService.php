@@ -20,12 +20,12 @@ class MPKService
     }
     public function handlerInsertData(StoreMPKRequest $request)
     {
-        $data = $request->validate();
+        $data = $request->validated();
         return $this->mpkrepos->simpanData($data);
     }
     public function handlerUpdateData(UpdateMPKRequest $request, $id)
     {
-        $data = $request->validate();
+        $data = $request->validated();
         return $this->mpkrepos->updateData($data, $id);
     }
     public function handlerDeleteData($id)

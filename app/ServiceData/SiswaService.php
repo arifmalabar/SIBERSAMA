@@ -20,6 +20,10 @@ class SiswaService
         $this->kode_kelas = $kode_kelas;
         $this->siswaRepos = new SiswaRepos($model, $this->kode_kelas);
     }
+    public function handlerGetDataWithoutID()
+    {
+        return $this->siswaRepos->getAllDataWithoutID();
+    }
     public function handlerGetData()
     {
         return $this->siswaRepos->getAllData();

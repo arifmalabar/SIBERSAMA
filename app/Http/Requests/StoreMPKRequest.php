@@ -13,7 +13,7 @@ class StoreMPKRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreMPKRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'NISN' => 'required|unique:tb_mpkosis',
+            'tahun_periode_aktif' => 'required',
+            'tahun_periode_non' => 'required'
         ];
     }
 }

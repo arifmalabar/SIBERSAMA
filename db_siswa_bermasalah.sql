@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Bulan Mei 2023 pada 15.49
+-- Waktu pembuatan: 01 Jun 2023 pada 03.14
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.0.15
 
@@ -131,8 +131,10 @@ CREATE TABLE `tb_guru` (
 --
 
 INSERT INTO `tb_guru` (`NIP`, `nama`, `username`, `password`, `role`, `last_access`, `kd_jabatan`, `kode_pangkat`) VALUES
-('12919291212', 'bahrul', 'bahrul@gmail.com', '$2y$10$BnyKmFaNmbU99Jz29jU5BOeYbMCnb4GxF/p88jbLm999xtzutc3Oy', 1, '2023-05-18 07:07:19', 'JB-2', 'PK-1'),
-('197811920002021004', 'Arika Risma', 'arika@gmail.com', '$2y$10$LsY19Fs75rhV4t0IkYqmROgwBmQYJrJPhmT4lFhPgPnPUu5duhDk2', 1, '2023-05-10 00:30:38', 'JB-1', 'PK-1'),
+('1291929121211', 'roa', 'roa@gmail.com', '$2y$10$vEFqxFk9R5oJ6QeJW/Q.pOdchBoCoDTrFCTZT5V0oTpAqom2SOIMW', 1, '2023-05-25 01:12:06', 'JB-2', 'PK-1'),
+('129192912123', 'Ludit', 'ludit@gmail.com', '$2y$10$3gEVqSfhpA5DwlyCT715auPP4bbcgVlr9MGrPtToLQlREPP9ty8ZG', 1, '2023-05-24 07:06:07', 'JB-2', 'PK-1'),
+('197811920002021004', 'Arika Risma', 'arika@gmail.com', '1234', 1, '2023-05-20 11:03:56', 'JB-1', 'PK-1'),
+('2002121202', 'bahrul ilmi', 'bahrul@gmail.com', '12', 1, '2023-05-25 14:57:20', 'JB-2', 'PK-1'),
 ('2002121220230110004', 'Ridho Arif W', 'ridhoarif40@gmail.com', '$2y$10$p3vnUrnNJJsIUG.lO8xt9uBoMB.wvvxr6S.wmF/4hbgUWeeI.nf/u', 0, '2023-05-07 12:07:02', 'JB-1', 'PK-1');
 
 -- --------------------------------------------------------
@@ -165,8 +167,10 @@ CREATE TABLE `tb_jabatan` (
 --
 
 INSERT INTO `tb_jabatan` (`kd_jabatan`, `nama_jabatan`) VALUES
+('5MeqPcwr', 'po'),
 ('JB-1', 'Kepala Sekolah'),
-('JB-2', 'Guru');
+('JB-2', 'Guru'),
+('xH3UbAZl', 'Waka Kesiswaan');
 
 -- --------------------------------------------------------
 
@@ -180,6 +184,15 @@ CREATE TABLE `tb_jenis_kriteria` (
   `jenis_kriteria` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bobot_poin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_jenis_kriteria`
+--
+
+INSERT INTO `tb_jenis_kriteria` (`kode_jenis_kriteria`, `kode_kriteria`, `jenis_kriteria`, `bobot_poin`) VALUES
+(1, 2, 'Memakai Jaket Dikelas', 10),
+(3, 2, 'Makan Dikelas', 5),
+(4, 4, 'Pacaran', 5);
 
 -- --------------------------------------------------------
 
@@ -197,8 +210,8 @@ CREATE TABLE `tb_jurusan` (
 --
 
 INSERT INTO `tb_jurusan` (`kode_jurusan`, `nama_jurusan`) VALUES
-(9, 'Teknik Komputer Jaringan'),
-(10, 'Elektronika Industries');
+(10, 'Elektronika Industries'),
+(11, 'Mekatronika');
 
 -- --------------------------------------------------------
 
@@ -217,8 +230,7 @@ CREATE TABLE `tb_kelas` (
 --
 
 INSERT INTO `tb_kelas` (`kode_kelas`, `kode_jurusan`, `nama_kelas`) VALUES
-(3, 9, 'X TKJ D'),
-(4, 9, 'XI TKJ D');
+(5, 11, 'X TKJ D');
 
 -- --------------------------------------------------------
 
@@ -236,7 +248,7 @@ CREATE TABLE `tb_kepangkatan` (
 --
 
 INSERT INTO `tb_kepangkatan` (`kode_pangkat`, `pangkat`) VALUES
-('PK-1', 'IIA');
+('PK-1', 'IIIA');
 
 -- --------------------------------------------------------
 
@@ -248,6 +260,14 @@ CREATE TABLE `tb_kriteria` (
   `kode_kriteria` bigint(20) UNSIGNED NOT NULL,
   `nama_kriteria` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_kriteria`
+--
+
+INSERT INTO `tb_kriteria` (`kode_kriteria`, `nama_kriteria`) VALUES
+(2, 'Kesopanana'),
+(4, 'asas');
 
 -- --------------------------------------------------------
 
@@ -280,7 +300,8 @@ CREATE TABLE `tb_operator` (
 --
 
 INSERT INTO `tb_operator` (`NIP`, `nama`, `username`, `password`) VALUES
-('119999', 'Ridho', 'ridhoarif40@gmail.com', '$2y$10$4ECPwGYaUTMRRrWAE0OqouNf387K2ufJsxFTzPCJWcnNEG1abqbrW');
+('12919291212', 'bahrul ilmi', 'bahrul@gmail.com', '$2y$10$BFZaJgc6Y8rjdirnvHRifeq3SNpgDzibeulvxV/U10wKxKgaf1IgO'),
+('2002121220230110004', 'Ridho', 'ridhoarif40@gmail.com', '$2y$10$slYoARUQIsfCeOPkFVScP.9iVEgPmjO19t.Mjof09D9TO74axBZzm');
 
 -- --------------------------------------------------------
 
@@ -291,12 +312,21 @@ INSERT INTO `tb_operator` (`NIP`, `nama`, `username`, `password`) VALUES
 CREATE TABLE `tb_pelanggaran` (
   `kode_pelanggaran` bigint(20) UNSIGNED NOT NULL,
   `NIP` char(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kode_anggota` bigint(20) UNSIGNED NOT NULL,
+  `kode_anggota` bigint(20) UNSIGNED DEFAULT NULL,
   `NISN` char(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kode_jenis_kriteria` bigint(20) UNSIGNED NOT NULL,
   `semester` int(11) NOT NULL,
   `tanggal_pelanggaran` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_pelanggaran`
+--
+
+INSERT INTO `tb_pelanggaran` (`kode_pelanggaran`, `NIP`, `kode_anggota`, `NISN`, `kode_jenis_kriteria`, `semester`, `tanggal_pelanggaran`) VALUES
+(2, '1291929121211', NULL, '00278833', 1, 2, '2023-05-31 04:04:06'),
+(3, '1291929121211', NULL, '00278833', 1, 1, '2023-05-31 04:05:24'),
+(4, '1291929121211', NULL, '00278833', 1, 1, '2023-05-31 04:05:49');
 
 -- --------------------------------------------------------
 
@@ -310,6 +340,13 @@ CREATE TABLE `tb_pereferensi` (
   `bobot_nilai` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `tb_pereferensi`
+--
+
+INSERT INTO `tb_pereferensi` (`kode_pereferensi`, `keterangan`, `bobot_nilai`) VALUES
+(2, 'Sangat Baik', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -319,6 +356,17 @@ CREATE TABLE `tb_pereferensi` (
 CREATE TABLE `tb_semester` (
   `semester` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tb_semester`
+--
+
+INSERT INTO `tb_semester` (`semester`) VALUES
+(1),
+(2),
+(3),
+(4),
+(9);
 
 -- --------------------------------------------------------
 
@@ -340,7 +388,7 @@ CREATE TABLE `tb_siswa` (
 --
 
 INSERT INTO `tb_siswa` (`NISN`, `kode_kelas`, `nama_siswa`, `jenis_kelamin`, `username`, `password`) VALUES
-('27197004', 4, 'Ridho Arif Wicaksono', 'pria', '27197004@sch.id', '$2y$10$IOqUiJtweGakbBA6HN./j.zOyCyTu/0FoTYrozQsECRE8HDZOxIi2');
+('00278833', 5, 'Hafid', 'pria', 'hafidz@sch.id', '$2y$10$wInXOg9cNZ4VfMEBMo.WquydSoqdQ6OFwgQHIHBOrvArautK0TIHC');
 
 -- --------------------------------------------------------
 
@@ -527,43 +575,43 @@ ALTER TABLE `tb_informasi`
 -- AUTO_INCREMENT untuk tabel `tb_jenis_kriteria`
 --
 ALTER TABLE `tb_jenis_kriteria`
-  MODIFY `kode_jenis_kriteria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `kode_jenis_kriteria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
-  MODIFY `kode_jurusan` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `kode_jurusan` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  MODIFY `kode_kelas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kode_kelas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kriteria`
 --
 ALTER TABLE `tb_kriteria`
-  MODIFY `kode_kriteria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `kode_kriteria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_mpkosis`
 --
 ALTER TABLE `tb_mpkosis`
-  MODIFY `kode_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `kode_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pelanggaran`
 --
 ALTER TABLE `tb_pelanggaran`
-  MODIFY `kode_pelanggaran` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `kode_pelanggaran` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pereferensi`
 --
 ALTER TABLE `tb_pereferensi`
-  MODIFY `kode_pereferensi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `kode_pereferensi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

@@ -22,15 +22,25 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Kriteria</th>
+                                    <th>Jumlah Bobot</th>
                                     <th>Opsi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @php $no = 1; @endphp
+                                @php
+                                    $no = 1;
+                                @endphp
                                 @foreach($data_kriteria as $k)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $k->nama_kriteria }}</td>
+                                    <td>
+                                        @php $bobot = 0; @endphp
+                                        @foreach($k->jenisk as $jk)
+                                            @php $bobot += $jk->bobot_poin @endphp
+                                        @endforeach
+                                        {{ $bobot }}
+                                    </td>
                                     <td>
                                         <center>
                                             <a class="btn btn-sm btn-outline-danger" href="/hapuskriteria/{{ $k->kode_kriteria }}" ><i class="fa fa-trash"></i></a>&nbsp;

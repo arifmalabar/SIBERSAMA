@@ -136,6 +136,10 @@ Route::group(['middleware' => ['is_guru']], function(){
         Route::post('/editmpk/{id}', 'update');
         Route::get('/hapusmpk/{id}', 'destroy');
     });
+    Route::controller(EntryPelanggaran::class)->group(function (){
+        Route::get('/entry_pelanggaran/{id}', 'index');
+        Route::post('/tambahpelanggaran/{id}', 'entryPelanggaran');
+    });
     Route::get('/guru', [DashboardGuru::class, 'index']);
     Route::get('/remisi_pelanggaran', [RemisiPelanggaran::class, 'index']);
     Route::get('/entry_pelanggaran', [EntryPelanggaran::class, 'index']);

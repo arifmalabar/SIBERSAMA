@@ -17,4 +17,8 @@ class JenisKriteria extends Model
     {
         return $this->hasOne(Kriteria::class, "kode_kriteria", "kode_kriteria");
     }
+    public function haskriteria()
+    {
+        return $this->belongsTo(Kriteria::class, 'kode_kriteria', 'kode_kriteria');
+    }
 }

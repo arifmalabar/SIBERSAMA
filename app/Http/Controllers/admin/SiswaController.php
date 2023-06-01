@@ -16,7 +16,7 @@ class SiswaController extends Controller
 
     private SiswaService $siswaService;
     private Siswa $model;
-    private $id;
+    public $id;
     private $kelas;
     public function __construct()
     {
@@ -39,16 +39,19 @@ class SiswaController extends Controller
     {
         return $this->siswaService->handlerGetData();
     }
+    public function getDataWithoutID()
+    {
+        return $this->siswaService->handlerGetDataWithoutID();
+    }
     public function store(StoreSiswaRequest $request)
     {
-        return $request->hasValidSignature();
-        /*$query = $this->siswaService->handlerInsertData($request);
+        $query = $this->siswaService->handlerInsertData($request);
         if ($query)
         {
             return redirect('/siswa/'.$this->id)->with('pesan', 'Berhasil menambah data');
         } else {
             return redirect('/siswa/'.$this->id)->withErrors('pesan', 'Berhasil menambah data');
-        }*/
+        }
     }
     public function update(UpdateSiswaRequest $request, $id, $nisn)
     {

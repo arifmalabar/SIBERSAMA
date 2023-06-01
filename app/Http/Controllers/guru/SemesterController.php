@@ -23,7 +23,7 @@ class SemesterController extends Controller
     }
     public function getDataSemester()
     {
-        $this->semesterService->getDataSemester();
+        return $this->semesterService->getDataSemester();
     }
     public function store(StoreSemesterRequest $request)
     {
