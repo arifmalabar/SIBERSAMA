@@ -28,6 +28,7 @@ use App\Http\Controllers\admin\JabatanController;
 use App\Http\Controllers\guru\SemesterController;
 use App\Http\Controllers\guru\DataPereferensi;
 use App\Http\Controllers\guru\MPKController;
+use App\Http\Controllers\guru\Perangkingan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -142,6 +143,9 @@ Route::group(['middleware' => ['is_guru']], function(){
         Route::get('/riwayat_pelanggaran/{nisn}', 'halamanRiwayat');
         Route::post('/editpelanggaran/{id}/{nisn}', 'updatePelanggaran');
         Route::get('/hapuspelanggaran/{id}/{nisn}', 'hapusPelanggaran');
+    });
+    Route::controller(Perangkingan::class)->group(function(){
+        Route::get('/perangkingan', 'index');
     });
     Route::get('/guru', [DashboardGuru::class, 'index']);
     Route::get('/remisi_pelanggaran', [RemisiPelanggaran::class, 'index']);
