@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\admin\Kelas;
 use App\Models\guru\MPK;
+use App\Models\guru\Pelanggaran;
 
 class Siswa extends Model
 {
@@ -22,5 +23,9 @@ class Siswa extends Model
     public function mpk()
     {
         return $this->belongsTo(MPK::class, 'NISN', 'NISN');
+    }
+    public function data_pelanggar()
+    {
+        return $this->hasMany(Pelanggaran::class, 'NISN', 'NISN');
     }
 }

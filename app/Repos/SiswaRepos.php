@@ -21,4 +21,8 @@ class SiswaRepos extends BaseRepos
     {
         return parent::getAllData();
     }
+    public function getAllDataWithNISN($nisn)
+    {
+        return parent::getAllData()->where('NISN', $nisn);
+    }
 }

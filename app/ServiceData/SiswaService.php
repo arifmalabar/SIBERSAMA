@@ -24,6 +24,10 @@ class SiswaService
     {
         return $this->siswaRepos->getAllDataWithoutID();
     }
+    public function handlerGetDataWithNISN($nisn)
+    {
+        return $this->siswaRepos->getAllDataWithNISN($nisn);
+    }
     public function handlerGetData()
     {
         return $this->siswaRepos->getAllData();

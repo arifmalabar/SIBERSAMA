@@ -21,4 +21,8 @@ class JenisKriteria extends Model
     {
         return $this->belongsTo(Kriteria::class, 'kode_kriteria', 'kode_kriteria');
     }
+    public function pelanggaran()
+    {
+        return $this->belongsTo(Pelanggaran::class, 'kode_jenis_kriteria', 'kode_jenis_kriteria');
+    }
 }

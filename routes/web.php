@@ -139,6 +139,7 @@ Route::group(['middleware' => ['is_guru']], function(){
     Route::controller(EntryPelanggaran::class)->group(function (){
         Route::get('/entry_pelanggaran/{id}', 'index');
         Route::post('/tambahpelanggaran/{id}', 'entryPelanggaran');
+        Route::get('/riwayat_pelanggaran/{nisn}', 'halamanRiwayat');
     });
     Route::get('/guru', [DashboardGuru::class, 'index']);
     Route::get('/remisi_pelanggaran', [RemisiPelanggaran::class, 'index']);

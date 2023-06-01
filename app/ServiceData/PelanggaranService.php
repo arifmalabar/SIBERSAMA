@@ -13,17 +13,12 @@ class PelanggaranService
     {
         $this->pelanggaranRepos = new PelanggaranRepos($model);
     }
-    public function handlerGetDataPelanggaran($nisn)
-    {
-        return $this->pelanggaranRepos->getAllData($nisn);
-    }
     public function handlerInsertDataPelanggaran(StorePelanggaranRequest $request)
     {
         $data = $request->validated();
         $data['NIP'] = Auth::guard('guru')->user()->NIP;
-
         $data['tanggal_pelanggaran'] = date('Y-m-d h:i:s');
-        $this->pelanggaranRepos->simpanData($data);
+        return $this->pelanggaranRepos->simpanData($data);
     }
     public function handlerUpdateDataPelanggaran(UpdatePelanggaranRequest $request)
     {

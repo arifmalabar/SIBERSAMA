@@ -39,6 +39,10 @@ class SiswaController extends Controller
     {
         return $this->siswaService->handlerGetData();
     }
+    public function getDataWithID($nisn)
+    {
+        return $this->siswaService->handlerGetDataWithNISN($nisn);
+    }
     public function getDataWithoutID()
     {
         return $this->siswaService->handlerGetDataWithoutID();

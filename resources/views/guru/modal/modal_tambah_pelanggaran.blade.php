@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-entry-pelanggaran{{ $siswa->NISN }}">
+<div class="modal fade" id="modal-entry-pelanggaran">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-danger">
@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="/tambahpelanggaran/{{ $id }}">
+                <form role="form" method="post" action="/tambahpelanggaran/{{ $NISN }}">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
@@ -21,7 +21,7 @@
                                         <i class="fa fa-users"></i>
                                     </span>
                                     </div>
-                                    <input type="hidden" value="{{ $siswa->NISN }}" name="NISN">
+                                    <input type="hidden" value="{{ $NISN }}" name="NISN">
                                     <select class="form-control select2bs4 select2-hidden-accessible" name="semester" id="semester">
                                         <option value="">Pilih Semester</option>
                                         @foreach($data_semester as $sm)
@@ -57,7 +57,7 @@
                     </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="submit" class="btn btn-outline-success btn-sm"><i class="fa fa-plus"></i> Tambah MPK</button>
+                <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa fa-plus"></i> Tambah Pelanggaran</button>
             </div>
             </form>
         </div>

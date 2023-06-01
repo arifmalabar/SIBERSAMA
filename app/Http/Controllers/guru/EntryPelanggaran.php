@@ -37,20 +37,35 @@ class EntryPelanggaran extends SiswaController
         );
         return TemplateController::templateHandler("guru.entry_pelanggaran", $data, "Entry Pelanggaran");
     }
-    public function halamanEntry($nisn)
+    public function halamanRiwayat($nisn)
     {
         $data = array(
+            "NISN" => $nisn,
+            "data_siswa" => $this->getDataWithID($nisn),
+            "jml_bobot" => $this->countPoinPelanggaran($nisn),
+            "data_semester" => $this->semesterController->getDataSemester(),
             "data_kriteria" => $this->dataKriteria->getDataKriteria(),
-            "data_semester" => $this->semesterController->getDataSemester()
         );
-        return TemplateController::templateHandler("guru.halaman_entry_pelanggar", $data, "Entry Pelanggaran");
+        return TemplateController::templateHandler("guru.riwayat_pelanggaran", $data, "Riwayat Pelanggaran");
     }
     public function entryPelanggaran(StorePelanggaranRequest $request, $id)
     {
         $query = $this->pelanggaranService->handlerInsertDataPelanggaran($request);
         if ($query){
-            return redirect('entry_pelaggaran/'.id)->with('pesan', 'berhasil menambah data pelanggaran');
+            return redirect('/riwayat_pelanggaran/'.$id)->with('pesan', 'berhasil menambah data pelanggaran');
         }
+    }
+    public function countPoinPelanggaran($nisn)
+    {
+        $bobot = 0;
+        foreach ($this->getDataWithID($nisn) as $s)
+        {
+            foreach ($s->data_pelanggar as $d)
+            {
+                $bobot += $d->jenis_kriteria->bobot_poin;
+            }
+        }
+        return $bobot;
     }
     public function updatePelanggaran(UpdatePelanggaranRequest $request)
     {
