@@ -13,7 +13,7 @@ class UpdatePelanggaranRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdatePelanggaranRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'NISN' => 'required',
+            'kode_jenis_kriteria' => 'required',
+            'semester' => 'required',
         ];
     }
 }

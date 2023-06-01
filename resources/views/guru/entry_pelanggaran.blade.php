@@ -35,11 +35,9 @@
                                         <td>{{ $siswa->username }}</td>
                                         <td>
                                             <center>
-                                                <a class="btn btn-sm btn-outline-success btn_del" href="/hapussiswa/" >Riwayat Pelanggaran</a>&nbsp;
-                                                <a class="btn btn-sm btn-outline-danger btn_del" data-toggle="modal" data-target="#modal-entry-pelanggaran{{ $siswa->NISN }}" href="#" >Entry Pelanggaran</a>&nbsp;
+                                                <a class="btn btn-sm btn-outline-success" href="/riwayat_pelanggaran/{{ $siswa->NISN }}" >Riwayat Pelanggaran</a>&nbsp;
                                             </center>
                                         </td>
-                                        @include('guru.modal.modal_tambah_pelanggaran')
                                     </tr>
                                 @endforeach
                                 </tbody>

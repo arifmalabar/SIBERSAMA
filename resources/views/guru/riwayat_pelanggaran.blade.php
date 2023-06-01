@@ -10,6 +10,9 @@
                         <div class="card-header">
                             <h3 class="card-title">Data Riwayat Pelanggaran</h3>
                             <div class="card-tools">
+                                <button class="btn btn-sm btn-info" data-target="#modal-entry-pelanggaran" data-toggle="modal">
+                                    <i class="fa fa-print"></i> Cetak Pelanggaran
+                                </button>
                                 <button class="btn btn-sm btn-success" data-target="#modal-entry-pelanggaran" data-toggle="modal">
                                     <i class="fa fa-plus"></i> Tambah Data
                                 </button>
@@ -41,9 +44,10 @@
                                         <td>{{ $dp->tanggal_pelanggaran }}</td>
                                         <td>
                                             <center>
-                                                <a class="btn btn-sm btn-outline-danger" href="/hapuspelanggaran/{{ $dp->kode_pelanggaran }}" ><i class="fa fa-trash"></i></a>&nbsp;
-                                                <button class="btn btn-sm btn-outline-warning" data-target="#modal-kriteria-edit" data-toggle="modal"><i class="fa fa-edit"></i></button>
+                                                <a class="btn btn-sm btn-outline-danger" href="/hapuspelanggaran/{{ $dp->kode_pelanggaran }}/{{ $NISN }}" ><i class="fa fa-trash"></i></a>&nbsp;
+                                                <button class="btn btn-sm btn-outline-warning" data-target="#modal-update-edit{{ $dp->kode_pelanggaran }}" data-toggle="modal"><i class="fa fa-edit"></i></button>
                                             </center>
+                                            @include('guru.modal.modal_update_pelanggaran')
                                         </td>
                                     </tr>
                                     @endforeach

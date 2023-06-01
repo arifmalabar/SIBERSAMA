@@ -52,7 +52,7 @@ class EntryPelanggaran extends SiswaController
     {
         $query = $this->pelanggaranService->handlerInsertDataPelanggaran($request);
         if ($query){
-            return redirect('/riwayat_pelanggaran/'.$id)->with('pesan', 'berhasil menambah data pelanggaran');
+            return redirect('/riwayat_pelanggaran/'.$id)->with('pesan', 'berhasil mengubah data pelanggaran');
         }
     }
     public function countPoinPelanggaran($nisn)
@@ -67,11 +67,18 @@ class EntryPelanggaran extends SiswaController
         }
         return $bobot;
     }
-    public function updatePelanggaran(UpdatePelanggaranRequest $request)
+    public function updatePelanggaran(UpdatePelanggaranRequest $request, $id, $nisn)
     {
-
+        $query = $this->pelanggaranService->handlerUpdateDataPelanggaran($request, $id);
+        if ($query){
+            return redirect('/riwayat_pelanggaran/'.$nisn)->with('pesan', 'berhasil menambah data pelanggaran');
+        }
     }
-    public function hapusPelanggaran($id)
+    public function hapusPelanggaran($id, $nisn)
     {
+        $query = $this->pelanggaranService->handlerDeletePelanggaran($id);
+        if ($query){
+            return redirect('/riwayat_pelanggaran/'.$nisn)->with('pesan', 'berhasil menambah data pelanggaran');
+        }
     }
 }

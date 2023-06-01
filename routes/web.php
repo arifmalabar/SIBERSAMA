@@ -140,6 +140,8 @@ Route::group(['middleware' => ['is_guru']], function(){
         Route::get('/entry_pelanggaran/{id}', 'index');
         Route::post('/tambahpelanggaran/{id}', 'entryPelanggaran');
         Route::get('/riwayat_pelanggaran/{nisn}', 'halamanRiwayat');
+        Route::post('/editpelanggaran/{id}/{nisn}', 'updatePelanggaran');
+        Route::get('/hapuspelanggaran/{id}/{nisn}', 'hapusPelanggaran');
     });
     Route::get('/guru', [DashboardGuru::class, 'index']);
     Route::get('/remisi_pelanggaran', [RemisiPelanggaran::class, 'index']);
