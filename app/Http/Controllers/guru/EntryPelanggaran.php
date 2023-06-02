@@ -36,6 +36,11 @@ class EntryPelanggaran extends SiswaController
             "id" => $id
         );
         return TemplateController::templateHandler("guru.entry_pelanggaran", $data, "Entry Pelanggaran");
+
+    }
+    public function getSiswaByKriteria($nisn, $kode_kriteria)
+    {
+        return $data = $this->pelanggaranService->getSiswaByKriteria($nisn);
     }
     public function halamanRiwayat($nisn)
     {

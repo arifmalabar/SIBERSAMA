@@ -3,31 +3,41 @@
 namespace App\Http\Controllers\guru;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TemplateController;
+use App\Models\guru\Kriteria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\guru\DataJenisKriteria;
 use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\admin\SiswaController;
+use App\Http\Controllers\guru\DataKriteria;
 
 class Perangkingan extends Controller
 {
     private DataJenisKriteria $dataJenisKriteria;
-    private PelanggaranController $pelanggaranController;
+    private EntryPelanggaran $entryPelanggaran;
     private SiswaController $siswaController;
-
+    private DataKriteria $dataKriteria;
+    private $max;
     public function __construct()
     {
         $this->dataJenisKriteria = new DataJenisKriteria();
         $this->siswaController = new SiswaController();
-        $this->pelanggaranController = new PelanggaranController();
+        $this->entryPelanggaran = new EntryPelanggaran();
+        $this->dataKriteria = new DataKriteria();
         $this->hitJmlKriteria();
     }
-
     public function index()
     {
-        $this->getBenefit(1);
+        $data = array(
+            "jenis_kriteria" => $this->dataJenisKriteria->getDataJeniSKriteria(),
+            "perangkingan_controller" => new Perangkingan(),
+            "data_siswa" => $this->siswaController->getDataWithoutID(),
+            "data_kriteria" =>$this->dataKriteria->getDataKriteria()
+        );
+        return TemplateController::templateHandler('guru.perangkingan', $data, 'Perangkingan');
+        //$this->setData();
     }
-
-    private function hitJmlKriteria()
+    public function hitJmlKriteria()
     {
         $hasil = 0;
         foreach ($this->dataJenisKriteria->getDataJeniSKriteria() as $jk) {
@@ -36,21 +46,50 @@ class Perangkingan extends Controller
         return $hasil;
     }
 
-    private function hitKepentingan($jmlBobot)
+    public function hitKepentingan($jmlBobot)
     {
         $hasil = $jmlBobot / $this->hitJmlKriteria();
         return $hasil;
     }
+    public function getSiswaByKriteria($nisn, $jenis_kriteria)
+    {
+        $hasil = 0;
+        $data = $this->entryPelanggaran->getSiswaByKriteria($nisn, $jenis_kriteria);
+        foreach ($data as $d){
+            if ($d->jenis_kriteria->kriteria->kode_kriteria == $jenis_kriteria){
+                $hasil += $d->jenis_kriteria->bobot_poin;
+            }
+        }
+        return $hasil;
+    }
+    public function setData()
+    {
+        $data = array();
+        $data_siswa = $this->siswaController->getDataWithoutID();
+        $idx = 0;
+        foreach ($data_siswa as $ds){
+            $data[$idx]['nama_siswa'] = $ds->nama_siswa;
+            $data[$idx]['NISN'] = $ds->NISN;
+            $data[$idx]['kode_kelas'] = $ds->kode_kelas;
+            $idp = 0;
+            $data[$idx]['data_pelanggaran'][0] = "";
+            foreach ($ds->data_pelanggar as $ps){
+                $data[$idx]['data_pelanggaran'][$idp] = $ps->jenis_kriteria->bobot_poin;
+                $idp++;
+            }
 
-    private function jmlKepetingan()
+            $idx++;
+        }
+        dd($data);
+    }
+    public function jmlKepetingan()
     {
         $hasil = 0.0;
         foreach ($this->dataJenisKriteria->getDataJeniSKriteria() as $jk) {
             $hasil += $this->hitKepentingan($jk->bobot_poin);
         }
         return $hasil;
-    }//sampai sini dulu boss ngantuk
-
+    }
     private function getBenefit($poin_pelanggaran)
     {
         $data = array(
@@ -78,13 +117,9 @@ class Perangkingan extends Controller
         for ($s = 0; $s < count($data); $s++)
         {
             $max =0;
-            echo $data[$s]['nama_siswa'];
-            foreach ($data[$s]['nilai'] as $n){
-                echo " ".$n['benefit']." ";
-                if($n['benefit'] > $max){
-                    $max = $n['benefit'];
-                }
-            }
+            $next = $s;
+            echo $data[$s]['nama_siswa']."<br>";
+
             /*foreach ($data[$s]['nilai'] as $n){
                 $s['hasil_normalisasi'][$n] = $n['benefit'][] / $max;
             }

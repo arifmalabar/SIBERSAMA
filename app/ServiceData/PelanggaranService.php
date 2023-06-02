@@ -31,4 +31,8 @@ class PelanggaranService
     {
         return $this->pelanggaranRepos->hapusData($id);
     }
+    public function getSiswaByKriteria($nisn)
+    {
+        return $this->pelanggaranRepos->getAllDataByNISN($nisn);
+    }
 }
