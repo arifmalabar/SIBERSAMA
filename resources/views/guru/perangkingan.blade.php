@@ -64,6 +64,7 @@
                                 @php
                                     $jml = 0;
                                     $nilai = [];
+                                    $idx = 0;
                                     @endphp
                                 @foreach($data_siswa as $dt)
                                 <tr>
@@ -76,18 +77,39 @@
                                             @php
                                                 $kode_kriteria = $k->jenis_kriteria->kriteria->kode_kriteria;
                                                 $total_siswa = $perangkingan_controller->getSiswaByKriteria($nisn, $kode_kriteria);
-
+                                                $nilai[$idx]['nilai'][$position] = $total_siswa;
+                                                $position++;
                                                 @endphp
                                             <td>
                                                 {{ $total_siswa }}
                                             </td>
                                         @endforeach
                                 </tr>
-
+                                @php $idx++; @endphp
                                 @endforeach
                                 <tr>
                                     <td>MAX</td>
-                                    <td>@php print_r($nilai) @endphp</td>
+                                    @foreach($data_siswa as $dt)
+                                    <tr>
+                                        <td>{{ $dt->nama_siswa }}</td>
+                                        @php
+                                            $position =0;
+                                            $nisn = $dt->NISN;
+                                        @endphp
+                                        @foreach($data_kriteria as $k)
+                                            @php
+                                                $kode_kriteria = $k->jenis_kriteria->kriteria->kode_kriteria;
+                                                $total_siswa = $perangkingan_controller->getSiswaByKriteria($nisn, $kode_kriteria);
+                                                $nilai[$idx]['nilai'][$position] = $total_siswa;
+                                                $position++;
+                                            @endphp
+                                            <td>
+                                                {{ $total_siswa }}
+                                            </td>
+                                        @endforeach
+                                    </tr>
+                                    @php $idx++; @endphp
+                                    @endforeach
                                 </tr>
                             </table>
                         </div>

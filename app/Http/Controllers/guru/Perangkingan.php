@@ -44,7 +44,7 @@ class Perangkingan extends Controller
             $hasil += $jk->bobot_poin;
         }
         return $hasil;
-    }
+    }//jalan terakhir pakai SQL
 
     public function hitKepentingan($jmlBobot)
     {
