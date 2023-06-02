@@ -36,6 +36,7 @@ class Perangkingan extends Controller
         );
         return TemplateController::templateHandler('guru.perangkingan', $data, 'Perangkingan');
         //$this->setData();
+        //dd($this->dataKriteria->getDataKriteria());
     }
     public function hitJmlKriteria()
     {
@@ -65,22 +66,18 @@ class Perangkingan extends Controller
     public function setData()
     {
         $data = array();
-        $data_siswa = $this->siswaController->getDataWithoutID();
         $idx = 0;
-        foreach ($data_siswa as $ds){
-            $data[$idx]['nama_siswa'] = $ds->nama_siswa;
-            $data[$idx]['NISN'] = $ds->NISN;
-            $data[$idx]['kode_kelas'] = $ds->kode_kelas;
-            $idp = 0;
-            $data[$idx]['data_pelanggaran'][0] = "";
-            foreach ($ds->data_pelanggar as $ps){
-                $data[$idx]['data_pelanggaran'][$idp] = $ps->jenis_kriteria->bobot_poin;
-                $idp++;
-            }
-
+        $data_kriteria = $this->dataKriteria->getDataKriteria();
+        foreach ($data_kriteria as $dk){
+            $data['nama_kriteria'][$idx] = $dk->nama_kriteria;
             $idx++;
         }
-        dd($data);
+        $idx =0;
+        foreach($data_kriteria as $dk){
+            $data['bobot'][$idx] = $dk->jenis_kriteria->bobot_poin;
+            $idx++;
+        }
+        print_r($data);
     }
     public function jmlKepetingan()
     {
