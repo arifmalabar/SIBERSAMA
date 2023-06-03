@@ -125,12 +125,14 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="/siswa/riwayatpelanggaran/1" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Semester 1</p>
-                    </a>
-                  </li>
+                  @foreach($semester_ul as $sm)
+                    <li class="nav-item">
+                        <a href="/siswa/riwayatpelanggaran/{{ $sm->semester }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Semester {{ $sm->semester }}</p>
+                        </a>
+                    </li>
+                  @endforeach
                 </ul>
             </li>
             <li class="nav-header">Akun & Autentikasi</li>

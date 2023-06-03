@@ -15,14 +15,19 @@ class PelanggaranRepos extends BaseRepos
     }
     public function getAllDataByYear($year)
     {
-        return parent::getAllData()->where('YEAR(tanggal_pelanggaran)', $year);
+        return $this->model->whereYear('tanggal_pelanggaran', $year)->get();
     }
     public function getALlDataByMonth($month)
     {
-        return parent::getAllData()->where('MONTH(tanggal_pelanggaran)', $month);
+        return $this->model->whereMonth('tanggal_pelanggaran', $month)->get();
     }
     public function getAllDataByDay($day)
     {
-        return parent::getAllData()->where('DAY(tanggal_pelanggaran)', $day);
+        return $this->model->whereDay('tanggal_pelanggaran', $day)->get();
+    }
+    public function getAllDataBySemester($semester)
+    {
+        $nisn = auth()->guard('siswa')->user()->NISN;
+        return parent::getAllData()->where('NISN', $nisn)->where('semester', $semester);
     }
 }

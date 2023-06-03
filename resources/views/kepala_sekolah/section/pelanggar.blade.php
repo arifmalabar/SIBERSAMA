@@ -14,18 +14,20 @@
                     <th>Nama Pelanggar</th>
                     <th>Jenis Pelanggaran</th>
                     <th>Nama Pelanggaran</th>
-                    <th>Kategori</th>
+                    <th>Jumlah Poin</th>
                 </tr>
                 </thead>
                 <tbody>
-                @php print_r($pe) @endphp
+                @php $no = 1; @endphp
+                @foreach($pelanggaran->getDataPelanggaranBulan() as $pg)
                 <tr>
-                    <td>1</td>
-                    <td>Yuma</td>
-                    <td>Kelakuan</td>
-                    <td>Merokok saat jam mata pelajaran</td>
-                    <td><center><span class="badge badge-danger">Berat</span></center></td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $pg->siswa->nama_siswa }}</td>
+                    <td>{{ $pg->jenis_kriteria->kriteria->nama_kriteria }}</td>
+                    <td>{{ $pg->jenis_kriteria->jenis_kriteria }}</td>
+                    <td><center><span class="badge badge-danger">{{ $pg->jenis_kriteria->bobot_poin }}</span></center></td>
                 </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

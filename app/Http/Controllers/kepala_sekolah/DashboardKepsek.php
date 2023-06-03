@@ -28,7 +28,6 @@ class DashboardKepsek extends Controller
           "pelanggaran" => new EntryPelanggaran(),
         );
         return TemplateController::templateHandler("kepala_sekolah/main", $data, "Dashboard");
-        //$this->getPelanggaranSedang();
     }
     public function getPelanggaranRendah()
     {

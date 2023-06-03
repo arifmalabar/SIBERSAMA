@@ -2,10 +2,10 @@
 
 namespace App\Models\guru;
 
+use App\Models\guru\JenisKriteria;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\admin\Siswa;
-use App\Models\guru\JenisKriteria;
 
 class Pelanggaran extends Model
 {
@@ -22,5 +22,13 @@ class Pelanggaran extends Model
     public function jenis_kriteria()
     {
         return $this->hasOne(JenisKriteria::class, 'kode_jenis_kriteria', 'kode_jenis_kriteria');
+    }
+    public function getDates()
+    {
+        return array('tanggal_pelanggaran');
+    }
+    public function dt_siswa()
+    {
+        return $this->hasOne(Siswa::class, 'NISN', 'NISN');
     }
 }

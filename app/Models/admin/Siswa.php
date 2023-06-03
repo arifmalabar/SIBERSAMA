@@ -24,6 +24,10 @@ class Siswa extends Model
     {
         return $this->belongsTo(MPK::class, 'NISN', 'NISN');
     }
+    public function dt_kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kode_kelas', 'kode_kelas');
+    }
     public function data_pelanggar()
     {
         return $this->hasMany(Pelanggaran::class, 'NISN', 'NISN');

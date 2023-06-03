@@ -122,12 +122,14 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="/kepala_sekolah/pelanggar/1" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Kelas X RPL D</p>
-                                </a>
-                            </li>
+                            @foreach($data_kelas_ul as $kelas)
+                                <li class="nav-item">
+                                    <a href="/kepala_sekolah/pelanggar/{{$kelas->kode_kelas}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ $kelas->nama_kelas }}</p>
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li class="nav-item">

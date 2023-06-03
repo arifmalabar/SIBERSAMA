@@ -46,6 +46,10 @@ class EntryPelanggaran extends SiswaController
     {
         return $data = $this->pelanggaranService->getSiswaByKriteria($nisn);
     }
+    public function getPelanggaranSemester($semester)
+    {
+        return $this->pelanggaranService->getPelanggaranBySemester($semester);
+    }
     public function halamanRiwayat($nisn)
     {
         $data = array(
@@ -92,7 +96,7 @@ class EntryPelanggaran extends SiswaController
     }
     public function getDataPelanggaranTahun()
     {
-        return $this->pelanggaranService->getPelanggaranByCriteria('tahun', date('Y'));
+         dd($this->pelanggaranService->getPelanggaranByCriteria('tahun', date('Y')));
     }
     public function getDataPelanggaranBulan()
     {

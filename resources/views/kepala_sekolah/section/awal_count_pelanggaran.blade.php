@@ -2,8 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
-            <h3>{{ count($pelanggaran->getDataPelanggaranHari()) }}</h3>
-
+            <h3>0</h3>
             <p>Jumlah Pelanggar Hari Ini</p>
         </div>
         <div class="icon">
