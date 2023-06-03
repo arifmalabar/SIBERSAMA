@@ -5,7 +5,7 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Jumlah Akun Guru</span>
-          <span class="info-box-number">12</span>
+          <span class="info-box-number">{{ $count_guru }}</span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -16,7 +16,7 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Data Pangkat</span>
-          <span class="info-box-number">12</span>
+          <span class="info-box-number">{{ count($kepangkatan) }}</span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -27,7 +27,7 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Data Jabatan</span>
-          <span class="info-box-number">12</span>
+          <span class="info-box-number">{{ $count_jabatan }}</span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -38,7 +38,7 @@
 
           <div class="info-box-content">
             <span class="info-box-text">Total Data</span>
-            <span class="info-box-number">52</span>
+            <span class="info-box-number">{{ $jumlah }}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
