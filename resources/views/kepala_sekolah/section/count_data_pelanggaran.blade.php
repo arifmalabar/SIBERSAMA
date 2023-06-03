@@ -5,7 +5,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Jumlah Pelanggaran Tinkat Rendah</span>
-                <span class="info-box-number">4</span>
+                <span class="info-box-number">{{ $dashboard_controller->getPelanggaranRendah() }}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -16,7 +16,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Jumlah Pelanggaran Tingkat Sedang</span>
-                <span class="info-box-number">1</span>
+                <span class="info-box-number">{{ $dashboard_controller->getPelanggaranSedang() }}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -27,7 +27,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Jumlah Pelanggaran Tingkat Tinggi</span>
-                <span class="info-box-number">3</span>
+                <span class="info-box-number">{{ $dashboard_controller->getPelanggaranTingkatTinggi() }}</span>
             </div>
             <!-- /.info-box-content -->
         </div>

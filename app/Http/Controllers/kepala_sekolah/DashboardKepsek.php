@@ -10,6 +10,7 @@ use App\Http\Controllers\guru\EntryPelanggaran;
 class DashboardKepsek extends Controller
 {
     private EntryPelanggaran $entryPelanggaran;
+    private $data_pelanggaran;
 
     /**
      * @param PelanggaranController $pelanggaranController
@@ -17,43 +18,54 @@ class DashboardKepsek extends Controller
     public function __construct()
     {
         $this->entryPelanggaran = new EntryPelanggaran();
+        $this->data_pelanggaran = $this->entryPelanggaran->getPelanggaranData();
     }
 
     public function index()
     {
-        return TemplateController::templateHandler("kepala_sekolah/main", array(), "Dashboard");
+        $data = array(
+          "dashboard_controller" => new DashboardKepsek(),
+          "pelanggaran" => new EntryPelanggaran(),
+        );
+        return TemplateController::templateHandler("kepala_sekolah/main", $data, "Dashboard");
+        //$this->getPelanggaranSedang();
     }
-    private function getPelanggaranTinggi()
+    public function getPelanggaranRendah()
     {
-        $max = 250;
-        $data = $this->entryPelanggaran->getDataWithoutID();
-        foreach ($data as $ds){
-            foreach ($ds->data_pelanggar as $dp){
-
+        $min = 0;
+        foreach($this->data_pelanggaran as $dt)
+        {
+            $bobot = $dt->jenis_kriteria->bobot_poin;
+            if($bobot < $min){
+                $min = $bobot;
             }
         }
+        return $min;
     }
-    private function getPelanggaranSedang()
+    public function getPelanggaranSedang()
     {
-
+        $sedang = 0;
+        foreach ($this->data_pelanggaran as $dt)
+        {
+            $bobot = $dt->jenis_kriteria->bobot_poin;
+            if($bobot < 70 && $bobot >= 20){
+                $sedang = $bobot;
+            }
+        }
+        return $sedang;
     }
-    private function getPelanggaranTingkatTinggi()
+    public function getPelanggaranTingkatTinggi()
     {
-
+        $max = 0;
+        foreach($this->data_pelanggaran as $dp){
+            $bobot = $dp->jenis_kriteria->bobot_poin;
+            if($bobot >= $max){
+                $max = $bobot;
+            }
+        }
+        return $max;
     }
-    private function getPelanggaranHariIni()
-    {
-
-    }
-    private function getPelanggaranBulanIni()
-    {
-
-    }
-    private function getPelanggaranTahunIni()
-    {
-
-    }
-    private function pelanggaranTotal()
+    public function pelanggaranTotal()
     {
 
     }

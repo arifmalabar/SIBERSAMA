@@ -13,6 +13,10 @@ class PelanggaranService
     {
         $this->pelanggaranRepos = new PelanggaranRepos($model);
     }
+    public function handlerGetAllData()
+    {
+        return $this->pelanggaranRepos->getAllData();
+    }
     public function handlerInsertDataPelanggaran(StorePelanggaranRequest $request)
     {
         $data = $request->validated();
@@ -34,5 +38,20 @@ class PelanggaranService
     public function getSiswaByKriteria($nisn)
     {
         return $this->pelanggaranRepos->getAllDataByNISN($nisn);
+    }
+    public function getPelanggaranByCriteria($criteria, $data_criteria)
+    {
+        switch ($criteria)
+        {
+            case 'tahun';
+                return $this->pelanggaranRepos->getAllDataByYear($data_criteria);
+            break;
+            case 'bulan';
+                return $this->pelanggaranRepos->getALlDataByMonth($data_criteria);
+            break;
+            case 'hari';
+                return $this->pelanggaranRepos->getALlDataByDAy($data_criteria);
+            break;
+        }
     }
 }

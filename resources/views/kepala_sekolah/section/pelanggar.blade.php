@@ -18,6 +18,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @php print_r($pe) @endphp
                 <tr>
                     <td>1</td>
                     <td>Yuma</td>

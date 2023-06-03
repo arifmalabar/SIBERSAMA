@@ -38,6 +38,10 @@ class EntryPelanggaran extends SiswaController
         return TemplateController::templateHandler("guru.entry_pelanggaran", $data, "Entry Pelanggaran");
 
     }
+    public function getPelanggaranData()
+    {
+        return $this->pelanggaranService->handlerGetAllData();
+    }
     public function getSiswaByKriteria($nisn, $kode_kriteria)
     {
         return $data = $this->pelanggaranService->getSiswaByKriteria($nisn);
@@ -85,5 +89,17 @@ class EntryPelanggaran extends SiswaController
         if ($query){
             return redirect('/riwayat_pelanggaran/'.$nisn)->with('pesan', 'berhasil menambah data pelanggaran');
         }
+    }
+    public function getDataPelanggaranTahun()
+    {
+        return $this->pelanggaranService->getPelanggaranByCriteria('tahun', date('Y'));
+    }
+    public function getDataPelanggaranBulan()
+    {
+        return $this->pelanggaranService->getPelanggaranByCriteria('bulan', date('m'));
+    }
+    public function getDataPelanggaranHari()
+    {
+        return $this->pelanggaranService->getPelanggaranByCriteria('hari', date('d'));
     }
 }

@@ -2,7 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
-            <h3>150</h3>
+            <h3>{{ count($pelanggaran->getDataPelanggaranHari()) }}</h3>
 
             <p>Jumlah Pelanggar Hari Ini</p>
         </div>
@@ -17,7 +17,7 @@
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
-            <h3>53</h3>
+            <h3>{{ count($pelanggaran->getDataPelanggaranBulan()) }}</h3>
             <p>Jumlah Pelanggar Sebulan</p>
         </div>
         <div class="icon">
@@ -31,8 +31,7 @@
     <!-- small box -->
     <div class="small-box bg-danger">
         <div class="inner">
-            <h3>44</h3>
-
+            <h3>{{ count($pelanggaran->getDataPelanggaranBulan()) +  count($pelanggaran->getDataPelanggaranHari()) }}</h3>
             <p>Total Pelanggaran</p>
         </div>
         <div class="icon">
