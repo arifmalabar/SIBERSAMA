@@ -13,7 +13,7 @@ class UpdateKelasRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateKelasRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "kode_jurusan" => "required",
+            "nama_kelas" => "required"
         ];
     }
 }

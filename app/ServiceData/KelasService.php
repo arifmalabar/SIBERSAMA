@@ -26,10 +26,10 @@ class KelasService
         $data = $request->validated();
         return $this->kelasRepos->simpanData($data);
     }
-    public function hanlderEditData(UpdateKelasRequest $request)
+    public function hanlderEditData(UpdateKelasRequest $request, $id)
     {
         $data = $request->validated();
-        return $this->kelasRepos->updateData($data);
+        return $this->kelasRepos->updateData($data, $id);
     }
     public function handlerDeleteData($id)
     {

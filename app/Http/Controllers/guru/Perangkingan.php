@@ -10,6 +10,7 @@ use App\Http\Controllers\guru\DataJenisKriteria;
 use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\admin\SiswaController;
 use App\Http\Controllers\guru\DataKriteria;
+use PDF;
 
 class Perangkingan extends Controller
 {
@@ -37,6 +38,17 @@ class Perangkingan extends Controller
         return TemplateController::templateHandler('guru.perangkingan', $data, 'Perangkingan');
         //$this->setData();
         //dd($this->dataKriteria->getDataKriteria());
+    }
+    public function exportPerangkingan()
+    {
+        $data = array(
+            "jenis_kriteria" => $this->dataJenisKriteria->getDataJeniSKriteria(),
+            "perangkingan_controller" => new Perangkingan(),
+            "data_siswa" => $this->siswaController->getDataWithoutID(),
+            "data_kriteria" =>$this->dataKriteria->getDataKriteria()
+        );
+        $pdf = PDF::loadview('export/export_perangkingan',$data);
+        return $pdf->download('data hasil perangkingan.pdf');
     }
     public function hitJmlKriteria()
     {

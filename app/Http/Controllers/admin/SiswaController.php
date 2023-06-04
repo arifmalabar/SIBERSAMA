@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\ServiceData\SiswaService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\KelasController;
+use PDF;
 
 class SiswaController extends Controller
 {
@@ -32,8 +33,18 @@ class SiswaController extends Controller
             "data_siswa" => $this->getDataSiswa(),
             "data_kelas" => $this->kelas->getDataKelas(),
             "id" => $id,
+            "kelas" => $this->getKelas()
         );
         return TemplateController::templateHandler("admin/siswa", $data, "Siswa");
+    }
+    public function getKelas()
+    {
+        $data = $this->getDataSiswa();
+        $kelas = "";
+        foreach ($data as $dt){
+            $kelas = $dt->kelas->nama_kelas;
+        }
+        return $kelas;
     }
     public function getDataSiswa()
     {
@@ -76,5 +87,15 @@ class SiswaController extends Controller
         } else {
             return redirect('/siswa/'.$this->id)->withErrors('pesan', 'gagal hapus data');
         }
+    }
+    public function reportSiswa($id)
+    {
+        $data = array(
+            "data_siswa" => $this->getDataSiswa(),
+            "kelas" => $this->getKelas(),
+            "id" => $id
+        );
+        $pdf = PDF::loadview('export/export_siswa',$data);
+        return $pdf->download('data kelas'.$this->getKelas().'.pdf');
     }
 }

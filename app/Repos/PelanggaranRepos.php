@@ -30,4 +30,8 @@ class PelanggaranRepos extends BaseRepos
         $nisn = auth()->guard('siswa')->user()->NISN;
         return parent::getAllData()->where('NISN', $nisn)->where('semester', $semester);
     }
+    public function getAllDataByYearMonth($month, $year)
+    {
+        return $this->model->whereMonth('tanggal_pelanggaran', '=', $month)->whereYear('tanggal_pelanggaran', '=', $year)->get();
+    }
 }

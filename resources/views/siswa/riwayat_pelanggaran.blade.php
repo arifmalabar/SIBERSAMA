@@ -9,9 +9,9 @@
                         <div class="card-header">
                             <h3 class="card-title">Riwayat Pelanggaran</h3>
                             <div class="card-tools">
-                                <button class="btn btn-sm btn-success" data-target="#modal-jurusan-tambah" data-toggle="modal">
+                                <a class="btn btn-sm btn-success" href="/siswa/exportRiwayatSiswa/{{ $semester }}">
                                     <i class="fa fa-print"></i> Cetak
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">

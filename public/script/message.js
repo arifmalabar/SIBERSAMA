@@ -25,10 +25,6 @@ function pesanGagal(pesan, header, ikon)
         confirmButtonText: 'Oke'
     });
 }
-btndel.addEventListener('click', function (e) {
-    e.preventDefault();
-    console.log(btndel.getAttribute("href"));
-})
 /*$('.btn_del').on('click', function (e) {
     e.preventDefault();
     swal.fire({

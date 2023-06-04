@@ -66,6 +66,7 @@ Route::group(['middleware' => ['is_operator']], function () {
         Route::post('/tambahsiswa/{id}', 'store');
         Route::post('/editsiswa/{id}/{nisn}', 'update');
         Route::get('/hapussiswa/{id}/{nisn}', 'destroy');
+        Route::get('/export_siswa/{id}', 'reportSiswa');
     });
     //guru
     Route::controller(GuruController::class)->group(function (){
@@ -73,6 +74,7 @@ Route::group(['middleware' => ['is_operator']], function () {
         Route::post('/tambahdataguru', 'store');
         Route::post('/editdataguru/{id}', 'update');
         Route::get('/hapusdataguru/{id}', 'destroy');
+        Route::get('/export_guru/', 'reportGuru');
     });
     //kepalasekolah
     Route::controller(KepalaSekolahController::class)->group(function (){
@@ -115,6 +117,7 @@ Route::group(['middleware' => ['is_guru']], function(){
         Route::post('/tambahjeniskriteria', 'store');
         Route::post('/editjeniskriteria/{id}', 'update');
         Route::get('/hapusjeniskriteria/{id}', 'destroy');
+        Route::get('/exportjeniskriteria', 'exportJenisKriteria');
     });
     //kriteria
     Route::controller(DataKriteria::class)->group(function (){
@@ -122,6 +125,7 @@ Route::group(['middleware' => ['is_guru']], function(){
         Route::post('/tambahkriteria', 'store');
         Route::post('/editkriteria/{id}', 'update');
         Route::get('/hapuskriteria/{id}', 'destroy');
+        Route::get('/exportKriteria', 'exportKriteria');
     });
     //jeniskriteria
     Route::controller(DataPereferensi::class)->group(function (){
@@ -143,9 +147,11 @@ Route::group(['middleware' => ['is_guru']], function(){
         Route::get('/riwayat_pelanggaran/{nisn}', 'halamanRiwayat');
         Route::post('/editpelanggaran/{id}/{nisn}', 'updatePelanggaran');
         Route::get('/hapuspelanggaran/{id}/{nisn}', 'hapusPelanggaran');
+        Route::get('/exportriwayat/{nisn}', 'exportRiwayat');
     });
     Route::controller(Perangkingan::class)->group(function(){
         Route::get('/perangkingan', 'index');
+        Route::get('/exportperangkingan', 'exportPerangkingan');
     });
     Route::get('/guru', [DashboardGuru::class, 'index']);
     Route::get('/remisi_pelanggaran', [RemisiPelanggaran::class, 'index']);
@@ -157,6 +163,7 @@ Route::group(['middleware' => ['is_guru']], function(){
 Route::group(['middleware' => ['is_siswa']], function(){
     Route::get('/siswa', [DashboardSiswa::class, 'index']);
     Route::get('/siswa/riwayatpelanggaran/{semester}', [RiwayatPelanggaran::class, 'index']);
+    Route::get('/siswa/exportRiwayatSiswa/{semester}', [RiwayatPelanggaran::class, 'exportRiwayat']);
     Route::get('/akun', [AkunSiswa::class, 'index']);
 });
 Route::group(['middleware' => ['is_kepsek']], function (){
@@ -165,6 +172,7 @@ Route::group(['middleware' => ['is_kepsek']], function (){
     Route::get('/kepala_sekolah/statistik/perbandingan', [StatistikPelanggar::class, 'index']);
     Route::get('/kepala_sekolah/statistik/pelanggaran', [StatistikPelanggar::class, 'laporanall']);
     Route::get('/kepala_sekolah/akun', [AkunKepsek::class, 'index']);
+    Route::get('/exportRiwayat/{id}', [DataPelanggar::class, 'exportPelanggar']);
 });
 Route::get('/tes', [Tes::class, 'index']);
 Route::get('/login', [AuthController::class, 'index']);

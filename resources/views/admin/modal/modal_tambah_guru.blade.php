@@ -70,7 +70,7 @@
                         <div class="col-md-6">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Multiple</label>
+                                <label>Jabatan</label>
                                 <select class="form-control select2bs4" name="kd_jabatan" data-placeholder="Pilih Jbatan Guru" style="width: 100%;">
                                     <option value="">Pilih Jabatan</option>
                                     @foreach($data_jabatan as $s)

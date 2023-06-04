@@ -10,9 +10,9 @@
                         <div class="card-header">
                             <h3 class="card-title">Data Riwayat Pelanggaran</h3>
                             <div class="card-tools">
-                                <button class="btn btn-sm btn-info" data-target="#modal-entry-pelanggaran" data-toggle="modal">
+                                <a href="/exportriwayat/{{ $NISN }}" class="btn btn-sm btn-info">
                                     <i class="fa fa-print"></i> Cetak Pelanggaran
-                                </button>
+                                </a>
                                 <button class="btn btn-sm btn-success" data-target="#modal-entry-pelanggaran" data-toggle="modal">
                                     <i class="fa fa-plus"></i> Tambah Data
                                 </button>

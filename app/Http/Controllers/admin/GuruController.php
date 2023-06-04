@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\TemplateController;
 use App\Models\admin\Jabatan;
 use App\ServiceData\GuruService;
+use PDF;
 
 class GuruController extends Controller
 {
@@ -71,5 +72,13 @@ class GuruController extends Controller
         } else {
             return redirect('/dataguru')->withErrors('errmsg', 'Gagal hapus data');
         }
+    }
+    public function reportGuru()
+    {
+        $data = array(
+            'data_guru' => $this->getDataGuru(),
+        );
+        $pdf = PDF::loadview('export/export_guru',$data);
+        return $pdf->download('data guru.pdf');
     }
 }

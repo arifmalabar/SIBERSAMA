@@ -42,7 +42,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">X Close</button>
-                <button type="submit" class="btn btn-outline-success btn-sm"><i class="fa fa-plus"></i> Tambah Jabatan</button>
+                <button type="submit" class="btn btn-outline-success btn-sm"><i class="fa fa-plus"></i> Tambah Kelas</button>
             </div>
             </form>
         </div>

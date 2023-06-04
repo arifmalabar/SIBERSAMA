@@ -21,4 +21,5 @@ class Kriteria extends Model
     {
         return $this->hasMany(JenisKriteria::class, 'kode_kriteria', 'kode_kriteria');
     }
+
 }

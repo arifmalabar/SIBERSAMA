@@ -10,6 +10,9 @@
                         <div class="card-header">
                             <h3 class="card-title">Data Siswa</h3>
                             <div class="card-tools">
+                                <a class="btn btn-sm btn-success" href="/export_siswa/{{ $id }}">
+                                    <i class="fa fa-print"></i> Export Siswa
+                                </a>
                                 <button class="btn btn-sm btn-success" data-target="#modal-siswa" data-toggle="modal">
                                     <i class="fa fa-user-plus"></i> Tambah Data
                                 </button>
@@ -17,7 +20,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <center><h3>Kelas XI TKJ D</h3></center>
+                            <center><h3>Kelas {{ $kelas }}</h3></center>
                             <center><h4>Jumlah Siswa : {{ count($data_siswa) }}</h4></center>
                             <table id="example3" class="table table-bordered table-striped">
                                 <thead>

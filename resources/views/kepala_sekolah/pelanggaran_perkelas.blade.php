@@ -9,9 +9,9 @@
                         <div class="card-header">
                             <h3 class="card-title">Data Siswa</h3>
                             <div class="card-tools">
-                                <button class="btn btn-sm btn-success" data-target="#modal-siswa" data-toggle="modal">
-                                    <i class="fa fa-print"></i> Cetak Export
-                                </button>
+                                <a class="btn btn-sm btn-success" href="/exportRiwayat/{{ $id }}">
+                                    <i class="fa fa-print"></i> Cetak Pelanggaran Kelas
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-jurusan-update{{ $kelas->kode_kelas }}">
+<div class="modal fade" id="modal-kelas-update{{ $kelas->kode_kelas }}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-warning">
@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="/updatekelas/{{ $kelas->kode_kelas }}">
+                <form role="form" method="post" action="/editkelas/{{ $kelas->kode_kelas }}">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

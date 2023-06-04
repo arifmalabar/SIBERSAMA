@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\SiswaController;
 use App\Http\Controllers\guru\SemesterController;
 use App\ServiceData\PelanggaranService;
 use App\Models\guru\Pelanggaran;
+use PDF;
 
 class EntryPelanggaran extends SiswaController
 {
@@ -61,6 +62,19 @@ class EntryPelanggaran extends SiswaController
         );
         return TemplateController::templateHandler("guru.riwayat_pelanggaran", $data, "Riwayat Pelanggaran");
     }
+    public function exportRiwayat($nisn)
+    {
+        $data = array(
+            "NISN" => $nisn,
+            "data_siswa" => $this->getDataWithID($nisn),
+            "jml_bobot" => $this->countPoinPelanggaran($nisn),
+            "data_semester" => $this->semesterController->getDataSemester(),
+            "data_kriteria" => $this->dataKriteria->getDataKriteria(),
+        );
+        $pdf = PDF::loadview('export/export_pelanggaran_siswa',$data);
+        return $pdf->download('riwayat pelanggaran siswa '.$nisn.'.pdf');
+        //return TemplateController::templateHandler("guru.riwayat_pelanggaran", $data, "Riwayat Pelanggaran");
+    }
     public function entryPelanggaran(StorePelanggaranRequest $request, $id)
     {
         $query = $this->pelanggaranService->handlerInsertDataPelanggaran($request);
@@ -96,7 +110,7 @@ class EntryPelanggaran extends SiswaController
     }
     public function getDataPelanggaranTahun()
     {
-         dd($this->pelanggaranService->getPelanggaranByCriteria('tahun', date('Y')));
+         return $this->pelanggaranService->getPelanggaranByCriteria('tahun', date('Y'));
     }
     public function getDataPelanggaranBulan()
     {

@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                 @php $no = 1; @endphp
-                @foreach($pelanggaran->getDataPelanggaranBulan() as $pg)
+                @foreach($pelanggaran->getDataPelanggaranHari() as $pg)
                 <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $pg->siswa->nama_siswa }}</td>

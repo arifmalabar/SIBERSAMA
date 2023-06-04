@@ -6,6 +6,9 @@
             <div class="row">
                 @include('template_error.message_request_error')
                 <div class="col-lg-12">
+                    <a href="/exportperangkingan" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Cetak Perangkingan</a>
+                </div>
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Data Alternatif</h3>

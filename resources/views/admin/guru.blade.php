@@ -10,15 +10,10 @@
                 <div class="card" style="border-radius: 20px">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-9">
-                                <div class="input-group">
-                                    <input type="text" value="" placeholder="Masukan Nama Jabatan" name="nama_jabatan" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <button class="btn btn-info" data-target="#modal-jurusan-tambah" data-toggle="modal">
-                                    <i class="fa fa-search"></i> Cari
-                                </button>
+                            <div class="col-lg-2">
+                                <a class="btn btn-info" href="/export_guru/">
+                                    <i class="fa fa-print"></i> Export To PDF
+                                </a>
                             </div>
                             <div class="col-lg-2">
                                 &nbsp;

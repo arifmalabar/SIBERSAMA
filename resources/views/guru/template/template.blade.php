@@ -130,23 +130,6 @@
                             <p>Jenis Kriteria</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>Siswa</p>
-                            <i class="right fas fa-angle-left"></i>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @foreach($data_kelas_ul as $kelas)
-                                <li class="nav-item">
-                                    <a href="/siswa/{{$kelas->kode_kelas}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ $kelas->nama_kelas }}</p>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
                     <li class="nav-header">Pelanggaran</li>
                     <li class="nav-item">
                         <a href="#" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
@@ -166,12 +149,6 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="/remisi_pelanggaran" class="nav-link {{ $judul == "Siswa" ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>Remisi Pelanggaran</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="/data_mpk" class="nav-link" class="nav-link {{ $judul == "Data MPK" ? 'active' : '' }}">
                             <i class="nav-icon fa fa-user-check"></i>
                             <p>MPK</p>
@@ -183,25 +160,7 @@
                             <p>Perangkingan</p>
                         </a>
                     </li>
-                    <li class="nav-header">Laporan</li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="nav-icon far fa-calendar-alt"></i>
-                            <p>Laporan <Pelanggaran></Pelanggaran></p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/laporan_perbandingan" class="nav-link">
-                            <i class="nav-icon far fa-calendar-alt"></i>
-                            <p>Laporan Perbandingan</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/laporan_pelanggaran" class="nav-link">
-                            <i class="nav-icon far fa-calendar-alt"></i>
-                            <p>Penentuan Siswa Bermasalah</p>
-                        </a>
-                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

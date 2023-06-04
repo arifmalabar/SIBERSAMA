@@ -37,11 +37,12 @@
                                         <td>
                                             <center>
                                                 <a class="btn btn-sm btn-outline-danger btn_del" href="/hapuskelas/{{ $kelas->kode_kelas }}" ><i class="fa fa-trash"></i></a>&nbsp;
-                                                <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="modal-jurusan-update{{ $kelas->kode_kelas }}"><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#modal-kelas-update{{ $kelas->kode_kelas }}"><i class="fa fa-edit"></i></button>
+                                                @include('admin.modal.modal_kelas_edit')
                                             </center>
                                         </td>
+
                                     </tr>
-                                    @include('admin.modal.modal_kelas_edit')
                                 @endforeach
                                 </tbody>
                             </table>

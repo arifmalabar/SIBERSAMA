@@ -11,6 +11,7 @@ use App\Http\Requests\UpdateKriteriaRequest;
 use Illuminate\Http\Request;
 use App\ServiceData\JenisKriteriaService;
 use App\Models\guru\JenisKriteria;
+use PDF;
 
 class DataJenisKriteria extends Controller
 {
@@ -32,6 +33,7 @@ class DataJenisKriteria extends Controller
         );
         return TemplateController::templateHandler("guru.jenis_kriteria", $data, "Data Jenis Kriteria");
     }
+
     public function getDataJeniSKriteria()
     {
         return $this->jenisKriteriaService->handlerGetData();
@@ -56,5 +58,13 @@ class DataJenisKriteria extends Controller
         if ($query){
             return redirect("/jenis_kriteria")->with('pesan', "berhasil menghapus data jenis kriteria");
         }
+    }
+    public function exportJenisKriteria()
+    {
+        $data = array(
+            "data_kriteria" => $this->dataKriteria->getDataKriteria()
+        );
+        $pdf = PDF::loadview('export/export_jenis_kriteria',$data);
+        return $pdf->download('data jenis kriteria.pdf');
     }
 }

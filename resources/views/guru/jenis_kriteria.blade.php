@@ -10,6 +10,9 @@
                         <div class="card-header">
                             <h3 class="card-title">Data Jenis Kriteria</h3>
                             <div class="card-tools">
+                                <a class="btn btn-sm btn-success" href="/exportjeniskriteria/">
+                                    <i class="fa fa-print"></i> Export Data
+                                </a>
                                 <button class="btn btn-sm btn-success" data-target="#modal-jeniskriteria-tambah" data-toggle="modal">
                                     <i class="fa fa-plus"></i> Tambah Data
                                 </button>

@@ -54,6 +54,10 @@ class PelanggaranService
             break;
         }
     }
+    public function getPelanggaranByMonthYear($month, $year)
+    {
+        $this->pelanggaranRepos->getAllDataByYearMonth($month, $year);
+    }
     public function getPelanggaranBySemester($semester)
     {
         return $this->pelanggaranRepos->getAllDataBySemester($semester);

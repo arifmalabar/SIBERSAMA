@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateKriteriaRequest;
 use App\ServiceData\KriteriaService;
 use App\Models\guru\Kriteria;
 use Illuminate\Http\Request;
+use PDF;
 
 class DataKriteria extends Controller
 {
@@ -25,6 +26,14 @@ class DataKriteria extends Controller
             "data_kriteria" => $this->getDataKriteria()
         );
         return TemplateController::templateHandler("guru.kriteria", $data, "Data Kriteria");
+    }
+    public function exportKriteria()
+    {
+        $data = array(
+            "data_kriteria" => $this->getDataKriteria()
+        );
+        $pdf = PDF::loadview('export/export_kriteria',$data);
+        return $pdf->download('data kriteria.pdf');
     }
     public function getDataKriteria()
     {
